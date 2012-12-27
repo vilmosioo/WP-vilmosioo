@@ -92,6 +92,8 @@
 		<!--[if lte IE 8 ]> <script type="text/javascript">var htmlForIe = ["abbr" ,"article" ,"aside" ,"audio" ,"canvas" ,"details" ,"figcaption" ,"figure" ,"footer" ,"header" ,"hgroup" ,"mark" ,"meter" ,"nav" ,"output" ,"progress" ,"section" ,"summary" ,"time" ,"video"], htmlForIeLen = htmlForIe.length; for(i=0;i<htmlForIeLen;i++){ document.createElement(htmlForIe[i]); }</script> <![endif]-->
 
 		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>"/>
+		<!--<link rel="stylesheet" href="<?php ECHO THEME_PATH ?>/orange.css"/>-->
+
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 		<?php wp_enqueue_script( 'jquery' ); ?>
 		

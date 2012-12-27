@@ -92,14 +92,14 @@ if ( !function_exists('hyperion_setup') ){
 		hyperion_removeBlogSlug();
 		include( "includes/theme-options-page.php" ); 
 
-		register_post_type('custom-post', array(
-			'label' => __('Custom post'),
-			'singular_label' => __('Custom post'),
+		register_post_type('portfolio', array(
+			'label' => __('Portfolio'),
+			'singular_label' => __('Portfolio item'),
 			'public' => true,
 			'show_ui' => true,
 			'capability_type' => 'post',
 			'hierarchical' => false,
-			'has_archive' => 'custom-post-index',
+			'has_archive' => 'portfolio',
 			'supports' => array('title', 'editor', 'author', 'thumbnail', 'custom-fields'),
 		));
 	}

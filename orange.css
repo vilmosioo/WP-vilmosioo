@@ -1,0 +1,31 @@
+ /*
+ORANGE THEME
+rgb(166, 109, 21)
+rgb(255,180,65)
+*/
+#header h1, #header h2{ color:rgb(166, 109, 21); }
+nav .current-menu-item>a, nav a:hover{ color:rgb(166, 109, 21); }
+
+a{ color:rgb(166, 109, 21); }
+a img{ border:1px solid rgb(166, 109, 21); }
+blockquote{ border-left:4px solid rgb(166, 109, 21); }
+blockquote:nth-child(odd){ border-left:4px solid rgb(255,180,65); }
+input[type='submit'], .blue, .comment-reply-link{ 
+	border-radius:5px; color:#fff;
+	background: #006dcc url('images/button-bg-orange.png') repeat-x;
+	background-image: -moz-linear-gradient(top, #cc8800, #cc4400);
+	background-image: -ms-linear-gradient(top, #cc8800, #cc4400);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#cc8800), to(#cc4400));
+	background-image: -webkit-linear-gradient(top, #cc8800, #cc4400);
+	background-image: -o-linear-gradient(top, #cc8800, #cc4400);
+	background-image: linear-gradient(top, #cc8800, #cc4400);
+}
+
+.rectangle-list a:before{ background: rgb(166, 109, 21); }
+.rectangle-list li:nth-child(odd) a:before{ background:rgb(65,180,255); }
+.rectangle-list a:after{ border-left-color: rgb(166, 109, 21); }
+.rectangle-list li:nth-child(odd) a:after{ border-left-color: rgb(65,180,255); } 
+
+#gallery-1 img:hover {
+	border:2px solid rgb(65,180,255);
+}

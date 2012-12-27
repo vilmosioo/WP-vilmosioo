@@ -7,7 +7,7 @@ get_header();
 
 <div id='main' role="main">
 	<div class='container'>
-		<section class='content clearfix'>
+		<section class='clearfix'>
 		<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<header>
@@ -18,27 +18,16 @@ get_header();
 				</aside>
 				<?php post_thumbdail( 'full' ); ?>
 				<?php the_content();?>				
+				<?php get_template_part( 'loop' , 'related' ); ?>
 				<aside class='aside' id='post-navigation'>
 					<span class='fleft'><?php previous_post_link(); ?></span> 
 					<span class='fright'><?php next_post_link(); ?></span> 
-					<div class='clear'></div>
-				</aside>
-				<?php get_template_part( 'loop' , 'related' ); ?>
-				<aside class='aside author'>
-					<?php echo get_avatar( get_the_author_meta( 'email' ), '100' ); ?>
-					<h4> About <strong><?php the_author_meta( 'display_name' ); ?></strong> </h4>
-					<p> 
-						<?php the_author_meta( 'description' ); ?>
-						<a href='#' rel='canonical'>Find out more &rarr;</a> 
-					</p>
 					<div class='clear'></div>
 				</aside>
 				<?php comments_template(); ?>
 			</article>
 		<?php endwhile; ?>
 		</section>
-
-		<?php get_sidebar(); ?>
 	</div>
 </div>
 <?php get_footer(); ?>
