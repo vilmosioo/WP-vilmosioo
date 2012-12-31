@@ -8,7 +8,7 @@ get_header();
 
 <div id='main' role="main">
 	<div class='container'>
-		<section class='content clearfix'>
+		<section class='clearfix'>
 			<header>
 				<h1>
 					<?php if ( is_category() ) : ?> Currently browsing: <?php single_cat_title(); ?>
@@ -38,7 +38,6 @@ get_header();
 				<div class='clear'></div>
 			</aside>
 		</section>
-		<?php get_sidebar(); ?>
 	</div>
 </div>
 

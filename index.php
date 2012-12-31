@@ -2,7 +2,7 @@
 
 <div id='main' role="main">
 	<div class='container'>
-		<section class='content clearfix'>
+		<section class='clearfix'>
 			<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class( 'hentry entry article clearfix' ); ?>>
 					<?php post_thumbdail( 'thumbnail' );?>
@@ -21,7 +21,6 @@
 				<div class='clear'></div>
 			</aside>
 		</section>
-		<?php get_sidebar(); ?>
 	</div>
 </div>
 
