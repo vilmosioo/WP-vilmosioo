@@ -28,6 +28,7 @@ if ($categories || $tags) {
  
 	$my_query = new WP_Query( $args );
  	if( $my_query->have_posts() ) {
+		echo "<div class='clear'></div>";
 		echo "<h3>Related posts</h3><ul class='list related'>";
  		while( $my_query->have_posts() ) {
  			$my_query->the_post(); ?>

@@ -11,7 +11,7 @@
 		</footer>
 
 		<script>!window.jQuery && document.write(unescape('%3Cscript src="<?php echo THEME_PATH; ?>/js/lib/jquery-latest.min.js"%3E%3C/script%3E'))</script>
-		<script src="<?php echo THEME_PATH; ?>/js/lib/modernizr2.6.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?php echo THEME_PATH; ?>/js/libs/modernizr-2.0.6.min.js" type="text/javascript" charset="utf-8"></script>
 		<script defer src="<?php echo THEME_PATH; ?>/js/script.js"></script>
 		<script> // Change UA-XXXXX-X to be your site's ID
 			window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];

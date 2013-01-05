@@ -11,6 +11,7 @@
 ?>
 
 <!-- You can start editing here. -->
+<div class='clear'></div>
 <a name='comments'></a>
 <?php if ( have_comments() ) : ?>
 	<h3 id="comments"><?php comments_number('No Comments :(', 'One Comment', '% Comments' );?></h3>

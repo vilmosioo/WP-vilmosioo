@@ -5,12 +5,12 @@
 		<section class='clearfix'>
 			<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class( 'hentry entry article clearfix' ); ?>>
-					<?php post_thumbdail( 'thumbnail' );?>
 					<header>
 						<h2 class='entry-title'><a href='<?php the_permalink(); ?>' rel='canonical'><?php the_title();?></a></h2>
 					</header>
 					<div class='entry-content'>
-						<?php the_excerpt(); ?> 
+						<?php post_thumbdail( 'thumbnail' );?>
+						<?php the_content(); ?> 
 					</div>
 					<a href='<?php the_permalink(); ?>' rel='canonical'>Continue reading &rarr;</a>
 				</article>
