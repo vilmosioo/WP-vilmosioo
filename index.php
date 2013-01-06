@@ -9,7 +9,7 @@
 						<h2 class='entry-title'><a href='<?php the_permalink(); ?>' rel='canonical'><?php the_title();?></a></h2>
 					</header>
 					<div class='entry-content'>
-						<?php post_thumbdail( 'thumbnail' );?>
+						<?php Hyperion::post_thumbnail( 'thumbnail' );?>
 						<?php the_content(); ?> 
 					</div>
 					<a href='<?php the_permalink(); ?>' rel='canonical'>Continue reading &rarr;</a>

@@ -25,7 +25,7 @@ body:before{ content: ""; position: fixed; top: -10px; left: 0; width: 100%; hei
 
 h1, h2, h3, h4, h5, h6{ color:#111; margin:0 0 20px 0; line-height:1; text-shadow:1px 1px 3px rgba(200,200,200,0.8); font-weight:100;}
 h1{ font-size: 4.75em; } 
-h2{ font-size: 3.75em; } 
+h2{ font-size: 3.75em; color:rgb(21, 165,235);} 
 h3{ font-size: 2.75em; } 
 h4{ font-size: 2.5em; } 
 h5{ font-size: 2.25em; } 
