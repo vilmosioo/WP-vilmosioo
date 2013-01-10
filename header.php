@@ -104,11 +104,13 @@
 	<body <?php body_class(); ?>>
 
 		<header id='header'>
-			<a href='<?php echo home_url(); ?>' id='logo'>
-				<h1><?php bloginfo('name'); ?></h1>
-				<h2><?php bloginfo('description'); ?></h2>
-			</a>
-			<nav>
-				<?php wp_nav_menu( array('menu' => 'Main', 'container' => false, )); ?>
-			</nav>
+			<div class='container'>
+				<a href='<?php echo HOME_URL; ?>' id='logo'>
+					<h1><?php bloginfo('name'); ?></h1>
+					<h2><?php bloginfo('description'); ?></h2>
+				</a>
+				<nav>
+					<?php wp_nav_menu( array('menu' => 'Main', 'container' => false, )); ?>
+				</nav>
+			</div>
 		</header>
