@@ -5,6 +5,7 @@ define( 'HOME_URL', home_url() );
 if ( ! isset( $content_width ) ) $content_width = 1200;
 
 require_once 'includes/Hyperion.php';
+require_once 'includes/Utils.php';
 // TO DO Make this a class too
 require_once 'includes/theme-options-page.php';
 
@@ -18,7 +19,7 @@ class VilmosIoo extends Hyperion{
 		// TO DO Change this to something relevant
 		add_shortcode('shortcode', array( &$this, 'some_shortcode' ));
 		add_action( 'widgets_init', array( &$this, 'register_sidebars' ) );
-
+		new Theme_Options();
 		$this->registerPostTypes(); 
 	}
 

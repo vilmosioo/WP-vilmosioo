@@ -13,7 +13,7 @@
 		<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicon.ico" />
 		<link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicon.png" />
 
-		<meta name="application-name" content="Hyperion Wordpress Theme" />
+		<meta name="application-name" content="<?php echo bloginfo('name');?>" />
 		
 		<meta name="msapplication-task" 
 			content="name=Go to Archives;
@@ -107,7 +107,6 @@
 			<div class='container'>
 				<a href='<?php echo HOME_URL; ?>' id='logo'>
 					<h1><?php bloginfo('name'); ?></h1>
-					<h2><?php bloginfo('description'); ?></h2>
 				</a>
 				<nav>
 					<?php wp_nav_menu( array('menu' => 'Main', 'container' => false, )); ?>

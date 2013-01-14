@@ -19,7 +19,7 @@ get_header();
 				<div class='entry-content'>
 					<?php the_content();?>
 				</div>				
-				<?php Hyperion::related_posts($post->ID); ?>
+				<?php Utils::related_posts($post->ID); ?>
 				<aside class='aside' id='post-navigation'>
 					<span class='fleft'><?php previous_post_link(); ?></span> 
 					<span class='fright'><?php next_post_link(); ?></span> 
