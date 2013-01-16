@@ -15,7 +15,7 @@ article{display:block}aside{display:block}details{display:block}figcaption{displ
 * {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; 
 }
-body { font-size: 0.875em; line-height:1.5; background:#eee; font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; color:#515151;}
+body { font-size: 0.875em; line-height:1.5; background:#fff; font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; color:#515151;}
 body:before{ content: ""; position: fixed; top: -10px; left: 0; width: 100%; height: 10px; z-index: 100;
    display:none;
    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
@@ -23,7 +23,7 @@ body:before{ content: ""; position: fixed; top: -10px; left: 0; width: 100%; hei
    box-shadow: 0px 0px 10px rgba(0,0,0,.8);
 }
 
-h1, h2, h3, h4, h5, h6{ color:#515151; margin:0 0 20px 0; line-height:1; font-weight:100;}
+h1, h2, h3, h4, h5, h6{ color:#515151; color:rgb(55,150,235); margin:0 0 20px 0; line-height:1; font-weight:100;}
 h1{ font-size: 3.75em; } 
 h2{ font-size: 2.75em; } 
 h3{ font-size: 1.75em; } 
@@ -60,17 +60,17 @@ blockquote p.name:before{ content:"-- "; }
 .clearfix:after { clear: both; }
 .tcenter{ text-align:center;}
 input[type='submit'], .button, .comment-reply-link{ display:inline-block; padding:7px 17px; text-decoration:none; color:#fff; cursor:pointer; border-radius:5px; }
-.large{ box-shadow:0 0 5px 0 #515151; font-size:1.5em; padding:9px 20px; border-radius:7px; }
+.large{ font-size:1.5em; padding:9px 20px; border-radius:7px; }
 .no-cssgradients .large{ background-image:none; }
 input[type='submit']:hover, .button:hover, .comment-reply-link:hover{ color:#515151; }
 input[type='submit'], .blue, .comment-reply-link{ 
 	background: rgb(55,150,235);
-	background-image: -moz-linear-gradient(top, rgb(55,150,235), rgb(10, 99, 156));
-	background-image: -ms-linear-gradient(top, rgb(55,150,235), rgb(10, 99, 156));
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(55,150,235)), to(rgb(10, 99, 156)));
-	background-image: -webkit-linear-gradient(top,  rgb(55,150,235), rgb(10, 99, 156));
-	background-image: -o-linear-gradient(top,  rgb(55,150,235), rgb(10, 99, 156));
-	background-image: linear-gradient(top,  rgb(55,150,235), rgb(10, 99, 156));
+	background-image: -moz-linear-gradient(top, rgb(55,150,235), rgb(45,140,225));
+	background-image: -ms-linear-gradient(top, rgb(55,150,235), rgb(45,140,225));
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(55,150,235)), to(rgb(45,140,225)));
+	background-image: -webkit-linear-gradient(top,  rgb(55,150,235), rgb(45,140,225));
+	background-image: -o-linear-gradient(top,  rgb(55,150,235), rgb(45,140,225));
+	background-image: linear-gradient(top,  rgb(55,150,235), rgb(45,140,225));
 }
 
 .fleft{ float:left;}
@@ -90,7 +90,8 @@ input[type='submit'], .blue, .comment-reply-link{
 #sidebar .widget li{ margin-bottom:0; }
 
 /****HEADER STYLES*******/
-#header{ position:fixed; top:0; left:0; width:100%; text-align: right; box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3); background: #fff; z-index:99; border-top:5px solid rgb(55,150,235); }
+#header{ position:fixed; top:0; left:0; width:100%; text-align: right; box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3); 
+	background: #efefef; z-index:99; border-top:5px solid rgb(55,150,235); }
 
 /*****NAV STYLES*******/
 nav{ margin:0 auto 0; }
@@ -113,23 +114,23 @@ nav li:hover ul{ display:block; }
 /****************MAIN****************/
 
 #main{ width:100%; min-height:1000px; margin:100px auto; }
-#main img{ box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3); }
 
 .article{ margin:0 0 30px; padding-bottom:30px; }
 .article aside{ margin:0 0 20px; }
 .article aside img{ margin:0; height:150px; max-width:100%; max-height:100%;  }
-.article a img, .article a:hover img{ border:none;}
 
+.tags{ margin:0 0 0 20px; padding:0; float:right; display: inline-block; width:20%;}
+.tags{ margin:0 0 0 20px; padding:0; }
 .author, .meta{ font-size:100%; margin:20px 0;}
 .author h4{ line-height:1; }
 .author p { padding:0; }
 .author a { white-space:nowrap; }
 .author img{ float:left; margin:0 15px 0 0; border:none; background:#aaa;}
-.meta{ font-size: 90%; }
+.meta{ font-size: 0.9em; }
 
 /*================FOOTER================*/
 
-footer{ font-size:90%; width:100%; margin:0; padding:20px 0; }
+footer{ font-size:90%; width:100%; margin:0; padding:20px 0; background:#eee; }
 footer .widget_recent_entries ul{ margin:0; padding:0; list-style:none;}
 footer .widget_recent_entries ul li{ border-bottom:1px solid rgba(200,200,200,0.25); padding:0 10px 10px 0; margin:10px 0;}
 footer .widget_recent_entries ul .img{ display:block; height:80px; margin:0 0 10px 0;}

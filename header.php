@@ -78,7 +78,7 @@
 			<?php } ?>
 			<meta name="twitter:url" content="<?php echo get_permalink($post->ID); ?>">
 			<meta name="twitter:title" content="<?php echo $post->post_title;?>">
-			<meta name="twitter:description" content="<?php echo substr( $post->post_content, 0, 150 );?>">
+			<meta name="twitter:description" content="<?php echo substr( strip_tags($post->post_content), 0, 150 );?>">
 			<?php 
 				$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); 
 				if($url){

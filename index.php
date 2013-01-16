@@ -8,6 +8,9 @@
 					<header>
 						<h2 class='entry-title'><a href='<?php the_permalink(); ?>' rel='canonical'><?php the_title();?></a></h2>
 					</header>
+					<aside class='tags'>
+						<?php the_tags('<ul><li>','</li><li>','</li></ul>'); ?>
+					</aside>
 					<div class='entry-content'>
 						<?php Utils::post_thumbnail( 'thumbnail' );?>
 						<?php the_content(); ?> 
