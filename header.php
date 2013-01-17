@@ -95,7 +95,6 @@
 		<!--<link rel="stylesheet" href="<?php ECHO THEME_PATH ?>/orange.css"/>-->
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-		<?php wp_enqueue_script( 'jquery' ); ?>
 		
 		<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
 		<?php wp_head(); ?>

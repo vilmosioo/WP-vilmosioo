@@ -7,7 +7,7 @@ if ( ! isset( $content_width ) ) $content_width = 1280;
 require_once 'includes/Hyperion.php';
 require_once 'includes/Utils.php';
 // TO DO Make this a class too
-require_once 'includes/theme-options-page.php';
+require_once 'includes/Theme_Options.php';
 
 class VilmosIoo extends Hyperion{
 	private $theme_options;
@@ -16,15 +16,32 @@ class VilmosIoo extends Hyperion{
 	Will load all settings of the theme 
 	*/
 	function __construct(){	
+		parent::__construct();
+
 		add_shortcode('shortcode', array( &$this, 'some_shortcode' ));
 		add_action( 'widgets_init', array( &$this, 'register_sidebars' ) );
 		add_action('init', array(&$this, 'register_post_types'));
 
 		$this->theme_options = new Theme_Options();
-		$this->theme_options->addField(array(
-			'slug' => 'test-option',
-			'name' => 'Test Option',
-			'desc' => 'Desctiption of option'
+		$this->theme_options->addTab(array(
+			'name' => 'General',
+			'slug' => 'general',
+			'options' => array(
+				'option1' => 'Option 1',
+				'option2' => 'Option 2'
+			)
+		));
+
+		$this->theme_options->addTab(array(
+			'name' => 'Help',
+			'slug' => 'help',
+			'options' => array(
+				'option3' => array(
+					'name' => 'Option 3',
+					'desc' => 'Some description'
+				),
+				'option4' => 'Option 4'
+			)
 		));
 		$this->theme_options->render();
 	}

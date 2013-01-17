@@ -10,7 +10,7 @@ get_header();
 	<div class='container'>
 		<section class='clearfix'>
 			<header>
-				<h1>Work</h1>
+				<h1>Portfolio</h1>
 			</header>
 			<?php 
 			query_posts(array(

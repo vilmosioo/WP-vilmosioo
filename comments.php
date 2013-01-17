@@ -14,7 +14,7 @@
 <div class='clear'></div>
 <a name='comments'></a>
 <?php if ( have_comments() ) : ?>
-	<h3 id="comments"><?php comments_number('No Comments :(', 'One Comment', '% Comments' );?></h3>
+	<h3 id="comments"><span class='icon-large icon-comments'></span><?php comments_number('No Comments :(', 'One Comment', '% Comments' );?></h3>
 
 	<ol class="commentlist">
 	<?php wp_list_comments('avatar_size=60'); ?>
