@@ -16,6 +16,7 @@
 						<a href='<?php the_permalink(); ?>' rel='canonical'>Continue reading &rarr;</a>
 					</div>
 					<div class='grid-1-4 tags'>
+						<div class='time'><?php echo the_time('d'); ?><span><?php echo the_time('M'); ?></span></div>
 						<div><span class='icon-comments icon-large'></span><a href='#comments'><?php comments_number('No Comments :(', 'One Comment', '% Comments' ); ?></a></div>
 						<div><?php the_tags('<span class="icon-tags icon-large"></span>',', ',''); ?></div>
 					</div>

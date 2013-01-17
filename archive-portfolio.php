@@ -9,9 +9,6 @@ get_header();
 <div id='main' role="main">
 	<div class='container'>
 		<section class='clearfix'>
-			<header>
-				<h1>Portfolio</h1>
-			</header>
 			<?php 
 			query_posts(array(
 				post_type => 'portfolio', 
@@ -21,14 +18,7 @@ get_header();
 			?>
 			<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class( 'hentry entry article clearfix' ); ?>>
-					<?php 
-						$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); 
-						if($url){
-							echo '<img src="'.$url.'" alt="'.get_the_title($post->ID).'">';
-						}
-					?>
-		
-					<div class='grid-2'>
+					<div class='grid-3'>
 						<header>
 							<h2 class='entry-title'><?php the_title();?></h2>
 						</header>
@@ -36,7 +26,8 @@ get_header();
 							<?php echo get_the_content(); ?> 
 						</div>
 					</div>
-					<div class='grid-2'>
+					<div class='grid-2-3'>
+						<?php the_post_thumbnail('full'); ?>
 					</div>
 		
 				</article>
