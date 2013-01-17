@@ -7,24 +7,41 @@ class Theme_Options{
 
 	function __construct(){
 		$this->current = ( isset( $_GET['tab'] ) ? $_GET['tab'] : 'general' ); 
+	}
 
-		$this->tabs['general'] = array(
-			'name' => 'General',
-			'options' => array(
-				'option1' => 'Option 1',
-				'option2' => 'Option 2'
-			)
-		);
-		$this->tabs['help'] = array(
-			'name' => 'Help',
-			'options' => array(
-				'option3' => array(
-					'name' => 'Option 3',
-					'desc' => 'Some description'
-					),
-				'option4' => 'Option 4'
-			)
-		);
+	// Parameters : slug, name, description, tab
+	function addField($args = array()){
+		$args = array_merge( array(
+	      "tab" => 'general',
+	      "slug" => 'option_slug',
+	      "name" => 'Option name',
+	      "desc" => ""
+	    ), $args );
+
+        $this->tabs[$args['tab']]['options'][$args['slug']] = array(
+        	'name' => $args['name'],
+        	'desc' => $args['desc']
+        );
+	}
+
+	// Parameters : slug, name, description, tab
+	function addTab($args = array()){
+		$args = array_merge( array(
+	      "slug" => 'general',
+	      "name" => 'General',
+	      "desc" => "",
+	      "options" => array()
+	    ), $args );
+
+        $this->tabs[$args['slug']] = array(
+        	'name' => $args['name'],
+        	'desc' => $args['desc'],
+        	'options' => $args['options']
+        );
+	}
+
+	function render(){
+		// initialise options
 		foreach($this->tabs as $slug => $tab){
 			if(!get_option('hyperion_options_'.$slug)){
 				$defaults = array();
@@ -36,21 +53,7 @@ class Theme_Options{
 				update_option( 'hyperion_options_'.$slug, $defaults );
 			}	
 		}
-		
-	}
 
-	// Parameters : slug, name, description, tab
-	function addField($args){
-		if(!$args['tab']) $args['tab'] = 'general';
-
-        $this->tabs[$args['tab']]['options'][$args['slug']] = array(
-        	'name' => $args['name'],
-        	'desc' => $args['desc']
-        );
-	    
-	}
-
-	function render(){
 		add_action('admin_menu', array(&$this, 'init'));
 		add_action( 'admin_init', array(&$this, 'register_mysettings') );
 	}
@@ -138,7 +141,8 @@ class Theme_Options{
 
 	function section_handler($args){
 		$id = substr($args['id'], 16); // 16 is the length of the section prefix: hyperion_options_
-		echo "<h2 class='section'>".$this->tabs[$id]['name']." Settings</h2>"; 
+		echo "<h2 class='section'>".$this->tabs[$id]['title']."</h2>"; 
+		echo "<p>".$this->tabs[$id]['desc']."</p>"; 
 	}
 
 	function input_handler($args){
