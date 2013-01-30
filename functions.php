@@ -6,22 +6,52 @@ if ( ! isset( $content_width ) ) $content_width = 1280;
 
 require_once 'includes/Hyperion.php';
 require_once 'includes/Utils.php';
-// TO DO Make this a class too
 require_once 'includes/Theme_Options.php';
+require_once 'includes/Metabox.php';
+require_once 'includes/Custom_Post.php';
 
 class VilmosIoo extends Hyperion{
 	private $theme_options;
+	private $metaboxes, $custom_posts;
 	/*
 	The class constructor, fired after setup theme event.
 	Will load all settings of the theme 
 	*/
 	function __construct(){	
 		parent::__construct();
-
+		
 		add_shortcode('shortcode', array( &$this, 'some_shortcode' ));
 		add_action( 'widgets_init', array( &$this, 'register_sidebars' ) );
 		add_action('init', array(&$this, 'register_post_types'));
+		add_action( 'init', array(&$this, 'register_metaboxes') );
+		
+		$this->create_theme_options();
+	}
+	
+	function register_post_types(){
+		$this->custom_posts['portfolio'] = new Custom_Post(array('name' => 'Portfolio'));
+		$this->custom_posts['experiment'] = new Custom_Post(array('name' => 'Experiment'));
+	}
 
+	function register_metaboxes(){
+		//TODO use default value in fields
+		$this->metaboxes['testimonial'] = new MetaBox(array(
+			"title" => 'Testimonial',
+			"page" => 'portfolio',
+			"fields" => array(
+	    		array(
+	    			'name' => 'Authors name',
+	    		),
+	    		array(
+	    			'name' => 'Testimonial text',
+					'type' => 'textarea'
+	    		)
+	      	)
+	    ));
+	}
+
+	// create theme options page
+	function create_theme_options(){
 		$this->theme_options = new Theme_Options();
 		$this->theme_options->addTab(array(
 			'name' => 'General',
@@ -50,42 +80,6 @@ class VilmosIoo extends Hyperion{
 	function some_shortcode( $atts, $content = null ) {
 		extract(shortcode_atts(array('attribute' => 'default_value'), $atts));
 		return "<div $attribute>".do_shortcode($content)."</div>";
-	}
-
-	// register post types
-	function register_post_types(){
-		$labels = array(
-		    'name' => 'Portfolio',
-		    'singular_name' => 'Portfolio',
-		    'add_new' => 'Add New',
-		    'add_new_item' => 'Add New Item',
-		    'edit_item' => 'Edit Portfolio',
-		    'new_item' => 'New Portfolio',
-		    'all_items' => 'All Items',
-		    'view_item' => 'View Item',
-		    'search_items' => 'Search Portfolio',
-		    'not_found' =>  'No items found',
-		    'not_found_in_trash' => 'No items found in Trash', 
-		    'parent_item_colon' => '',
-		    'menu_name' => 'Portfolio'
-		  );
-
-		  $args = array(
-		    'labels' => $labels,
-		    'public' => true,
-		    'publicly_queryable' => true,
-		    'show_ui' => true, 
-		    'show_in_menu' => true, 
-		    'query_var' => true,
-		    'rewrite' => array( 'slug' => 'portfolio' ),
-		    'capability_type' => 'post',
-		    'has_archive' => 'portfolio', 
-		    'hierarchical' => false,
-		    'menu_position' => null,
-		    'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields')
-		  ); 
-
-		  register_post_type( 'portfolio', $args );
 	}
 
 	/*

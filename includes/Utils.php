@@ -2,12 +2,20 @@
 // STATIC RESOURCES
 
 class Utils{
+	/*
+	* Generate a slug from string (lowercase and '-' as separator)
+	*/
+
+	static function generate_slug($s = ""){
+		return strtolower(str_replace(" ", "-", $s));
+	}
+
 	/* 
 	* Nice arrays
 	*
 	* This function will print out a nicely formatted array
 	*/
-	static function print_pre($s) {
+	static function print_pre($s = "") {
 		echo '<pre>';
 		print_r( $s );
 		echo '</pre>';
@@ -55,6 +63,11 @@ class Utils{
 		return $temp; 
 	}
 
+	/*
+	* Get a list of related posts based on common tags and categories
+	* 
+	* @param id : the id of the post
+	*/
 	static function related_posts($id){
 		$categories = get_the_category($id);
 		$tags = get_the_tags($id);

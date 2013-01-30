@@ -32,7 +32,7 @@ class Hyperion{
 		add_filter( "pre_update_option_tag_base", array( &$this, "remove_blog_slug" ));
 		add_filter( "pre_update_option_permalink_structure", array( &$this, "remove_blog_slug" ));
 	}
-
+	
 	function add_scripts_and_styles(){
 		wp_register_script( 'modernizr', THEME_PATH.'/js/libs/modernizr-2.0.6.min.js', array(), '1.0', true ); 
 		wp_register_script( 'default', THEME_PATH.'/js/script.js', array( 'jquery' ), '1.0', true ); 

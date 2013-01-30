@@ -1,5 +1,9 @@
 <?php
-
+/*
+* Theme options
+* 
+* Loads default settings for the Hyperion theme 
+*/
 class Theme_Options{
 
 	private $tabs;
