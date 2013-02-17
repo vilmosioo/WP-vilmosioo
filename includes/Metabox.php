@@ -7,22 +7,16 @@
 
 class MetaBox{
 	
-	private $id, $title, $page, $context, $priority, $fields;
+	private $id, $title, $page, $context, $priority, $fields, $class;
 
 	function __construct($args = array()) {
-		$args = array_merge( array(
+		$args = array_merge ( array(
 			"title" => 'Custom Meta Box',
 			"page" => 'post',
+			"class" => 'vilmosioo_metabox',
 			"context" => 'normal',
 			"priority" => 'high',
-			"fields" => array(
-	    		array(
-	    			'name' => 'Text',
-					'default' => '',
-					'description' => '',
-					'type' => 'text',
-	    		)
-	      	)
+			'fields' => (array)$args['fields']
 	    ), $args );
 
 		$this->id = Utils::generate_slug($args['title']);
@@ -31,9 +25,11 @@ class MetaBox{
 		$this->context = $args['context'];
 		$this->priority = $args['priority'];		
 		$this->fields = $args['fields'];	
+		$this->class = $args['class'];	
 
 		add_action( 'save_post', array(&$this, 'save') ); 
 		add_action( 'add_meta_boxes', array(&$this,'display') );
+
 	}
 
 	function display(){
@@ -53,7 +49,11 @@ class MetaBox{
 
 		global $post; 
 		foreach($this->fields as $field){
-			$id = Utils::generate_slug($field['name']);
+			$name = $field;
+			if(is_array($field)){
+				$name = $field['name'];
+			}
+			$id = Utils::generate_slug($name);
 			if( isset( $_POST[$id] ) )  {
 		        update_post_meta( $post->ID, $id, wp_kses( $_POST[$id], $allowed_html_tags ) );  
 		    }
@@ -62,30 +62,46 @@ class MetaBox{
 	}
 
 	function render($post, $args){
+		echo '<div class="'.$this->class.'">';
 		$values = get_post_custom( $post->ID );  
 		foreach($this->fields as $field){
-			$id = Utils::generate_slug($field['name']);
+			$name = is_array($field) ? $field['name'] : $field;
+			$desc = is_array($field) && $field['description'] ? '<p>'.$field['description'].'</p>' : '';
+			$id = Utils::generate_slug($name);
 			$value = isset( $values[$id] ) ? esc_attr( $values[$id][0] ) : "";  
 			//$selected = isset( $values['my_meta_box_select'] ) ? esc_attr( $values['my_meta_box_select'][0] ) : ”;  
 			//$check = isset( $values['my_meta_box_check'] ) ? esc_attr( $values['my_meta_box_check'][0] ) : ”;  
 			switch ($field['type']) {
+			    case "select":
+			        echo "
+					    <label for=\"$id\">$name</label>  
+					    $desc
+						<select name=\"$id\" id=\"$id\">
+					";
+					foreach ($field['options'] as $option) {
+						echo "<option value=\"$option\"", $value == $option ? ' selected="selected"' : '', ">$option</option>";
+					}
+					echo '</select>';
+				    break;
 			    case "textarea":
 			        echo "
-					    <label for=\"$id\">$field[name]</label>  
+					    <label for=\"$id\">$name</label>  
+					    $desc
 					    <textarea class='wp-editor-area' name=\"$id\" id=\"$id\" >$value</textarea><br>
-					    <span>$field[description]</span>
 				    ";
 				    break;
+			    // case text by default
 			    default:
 			        echo "
-					    <label for=\"$id\">$field[name]</label>  
-					    <input type=\"$field[type]\" name=\"$id\" id=\"$id\" value=\"$value\"><br>
-					    <span>$field[description]</span>
+					    <label for=\"$id\">$name</label>  
+					    $desc
+					    <input type=\"text\" name=\"$id\" id=\"$id\" value=\"$value\"><br>
 				    ";
 			        break;
 			}
 			
 		}
+		echo '</div>';
 	}
 }
 

@@ -10,19 +10,19 @@ class Theme_Options{
 	private $current;
 
 	function __construct(){
+		if(!is_admin()) return;
 		$this->current = ( isset( $_GET['tab'] ) ? $_GET['tab'] : 'general' ); 
 	}
 
 	// Parameters : slug, name, description, tab
 	function addField($args = array()){
-		$args = array_merge( array(
+		$args = array_merge ( array(
 	      "tab" => 'general',
-	      "slug" => 'option_slug',
 	      "name" => 'Option name',
 	      "desc" => ""
 	    ), $args );
 
-        $this->tabs[$args['tab']]['options'][$args['slug']] = array(
+        $this->tabs[$args['tab']]['options'][Utils::generate_slug($args['name'])] = array(
         	'name' => $args['name'],
         	'desc' => $args['desc']
         );
@@ -30,14 +30,13 @@ class Theme_Options{
 
 	// Parameters : slug, name, description, tab
 	function addTab($args = array()){
-		$args = array_merge( array(
-	      "slug" => 'general',
+		$args = array_merge ( array(
 	      "name" => 'General',
 	      "desc" => "",
 	      "options" => array()
 	    ), $args );
 
-        $this->tabs[$args['slug']] = array(
+        $this->tabs[Utils::generate_slug($args['name'])] = array(
         	'name' => $args['name'],
         	'desc' => $args['desc'],
         	'options' => $args['options']
@@ -50,8 +49,8 @@ class Theme_Options{
 			if(!get_option('hyperion_options_'.$slug)){
 				$defaults = array();
 				
-				foreach( $tab['options'] as $id => $option){
-					$defaults[$id] = $option;
+				foreach( $tab['options'] as $option){
+					$defaults[Utils::generate_slug($option)] = $option;
 				}
 			
 				update_option( 'hyperion_options_'.$slug, $defaults );
@@ -130,10 +129,12 @@ class Theme_Options{
 			register_setting( 'hyperion_options_'.$slug, 'hyperion_options_'.$slug );
 			if($slug != $this->current) continue;
 			add_settings_section( 'options_section_'.$slug, '', array(&$this, 'section_handler'), 'hyperion' ); 
-			foreach($tab['options'] as $name => $option){
+			foreach($tab['options'] as $option){
+				$name = Utils::generate_slug($option);
 				$title = $option;
 				$desc = '';
 				if(is_array($option)){
+					$name = Utils::generate_slug($option['name']);
 					$title = $option['name'];
 					$desc = $option['desc'];
 				}

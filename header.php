@@ -68,26 +68,7 @@
 		<script type="text/javascript">
 			document.documentElement.className = document.documentElement.className.replace('no-js', '');
 		</script>
-		<?php if(is_singular()) { ?>
-			<meta name="twitter:card" content="summary">
-			<?php 
-				$twitter = the_author_meta('twitter', $post->post_author); 
-				if($twitter){
-			?>
-			<meta name="twitter:creator" content="<?php echo $twitter;?>">
-			<?php } ?>
-			<meta name="twitter:url" content="<?php echo get_permalink($post->ID); ?>">
-			<meta name="twitter:title" content="<?php echo $post->post_title;?>">
-			<meta name="twitter:description" content="<?php echo substr( strip_tags($post->post_content), 0, 150 );?>">
-			<?php 
-				$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); 
-				if($url){
-			?>
-			<meta name="twitter:image" content="<?php echo $url;?>">
-			<?php 
-				}
-		}
-		?>
+		
 		<!-- !html5 elements for ie<9 -->
 		<!--[if lte IE 8 ]> <script type="text/javascript">var htmlForIe = ["abbr" ,"article" ,"aside" ,"audio" ,"canvas" ,"details" ,"figcaption" ,"figure" ,"footer" ,"header" ,"hgroup" ,"mark" ,"meter" ,"nav" ,"output" ,"progress" ,"section" ,"summary" ,"time" ,"video"], htmlForIeLen = htmlForIe.length; for(i=0;i<htmlForIeLen;i++){ document.createElement(htmlForIe[i]); }</script> <![endif]-->
 
@@ -96,19 +77,51 @@
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 		
-		<?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
+		<?php 
+		if ( is_singular() ) {
+			wp_enqueue_script( 'comment-reply' ); 
+			if ( get_the_title() == "Game Of Life"){ 
+				wp_enqueue_script('game-of-life'); 
+			}
+			if ( get_the_title() == "Arcball rotation"){ 
+				wp_enqueue_script('arcball'); 
+				?>
+				<script id="fragment" type="x-shader/x-fragment">
+					#ifdef GL_ES
+					precision highp float;
+					#endif
+					                        
+					uniform vec4 uColor;                  
+					void main() {
+					        gl_FragColor = uColor;
+					}
+				</script>
+				<script id="vertex" type="x-shader/x-vertex">
+					attribute vec2 aVertexPosition;
+					void main() {
+					        gl_Position = vec4(aVertexPosition, 0.0, 1.0);
+					}
+				</script>
+			<?php
+			}
+		}
+		?>
+
 		<?php wp_head(); ?>
 	</head>
 	
 	<body <?php body_class(); ?>>
-
 		<header id='header'>
 			<div class='container'>
 				<a href='<?php echo HOME_URL; ?>' id='logo'>
+					<img src='<?php echo THEME_PATH; ?>/images/favicon.png' title='<?php bloginfo('name'); ?>'>
 					<h1><?php bloginfo('name'); ?></h1>
 				</a>
 				<nav>
-					<?php wp_nav_menu( array('menu' => 'Main', 'container' => false, )); ?>
+					<?php wp_nav_menu( array(
+						'menu' => 'Main', 
+						'container' => false, 
+						'items_wrap'      => '<ul id="%1$s" class="%2$s"><li class="menu-button"><a>Menu</a></li>%3$s</ul>',)); ?>
 				</nav>
 			</div>
 		</header>

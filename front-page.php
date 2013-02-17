@@ -1,6 +1,10 @@
 <?php get_header();?>
-<div id='preview'>
-	<img src='http://vilmosioo.co.uk/wp-content/uploads/2012/02/The-Student-Mover-slide.png'>
+
+<div id='front-page' class='preview'>
+	<div class='container'>
+		<h1>Vilmos Ioo</h1>
+		<p>Welcome to the portfolio of <strong>Vilmos Ioo</strong>, freelance <strong>web designer</strong> and <strong>developer</strong>. Alstom Power intern 2012. Software Engineering student at Coventry University 2013. Love a good book with a hot cup of coffee.</p>
+	</div>
 </div>
 <div id='main'>
 	<div class='container'>
