@@ -2,7 +2,8 @@
 // define constants
 define( 'THEME_PATH', get_bloginfo( 'stylesheet_directory' ) );
 define( 'HOME_URL', home_url() );
-if ( ! isset( $content_width ) ) $content_width = 1280;
+
+if ( ! isset( $content_width ) ) $content_width = 1200;
 
 require_once 'includes/Hyperion.php';
 require_once 'includes/Utils.php';
@@ -10,12 +11,18 @@ require_once 'includes/Theme_Options.php';
 require_once 'includes/Metabox.php';
 require_once 'includes/Custom_Post.php';
 require_once 'includes/Gist_Manager.php';
-require_once 'includes/Github_API.php';
-require_once 'includes/Custom_Widget.php';
 
-class VilmosIoo extends Hyperion{
+/*
+
+get_template_part( 'theme-options-page' ); 
+
+*/
+?>
+<?php
+
+class HyperionBasedTheme extends Hyperion{
 	private $theme_options;
-	private $metaboxes, $custom_posts, $events;
+	
 	/*
 	The class constructor, fired after setup theme event.
 	Will load all settings of the theme 
@@ -23,79 +30,69 @@ class VilmosIoo extends Hyperion{
 	function __construct(){	
 		parent::__construct();
 		
-		// add_shortcode('shortcode', array( &$this, 'register_shortcode' ));
 		add_action( 'widgets_init', array( &$this, 'register_sidebars' ) );
-		// add_action( 'widgets_init', array( &$this, 'register_widgets' ) );
-
-		add_action( 'init', array(&$this, 'register_post_types'));
-		add_action( 'init', array(&$this, 'register_metaboxes') );
-		add_action( 'init', array(&$this, 'special_scripts') );
-		add_action( 'init', array(&$this, 'register_events') );
+		add_action( 'wp_enqueue_scripts', array( &$this, 'add_scripts_and_styles') );  
+		add_filter( 'twitter_cards_properties', array( &$this, 'twitter_custom' ));
+		add_action( 'login_enqueue_scripts', array( &$this, 'login_styles'));
+		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_styles'));
+		add_filter( 'admin_footer_text', array( &$this, 'remove_footer_admin'));
 		
-		add_image_size( 'portfolio-item', '300', '190', true ); 
+		add_image_size( 'single', 780, 500); 
 
-		$this->create_theme_options();
-	}
-	
-	function register_events(){
-		$this->events['gists'] = new GIST_MANAGER('vilmosioo');
-	}
-
-	function special_scripts(){
-		wp_register_script( 'game-of-life', THEME_PATH.'/js/game-of-life.js', array( 'jquery' ), '1.0', true ); 
-		wp_register_script( 'arcball', THEME_PATH.'/js/arcball.js', array( 'jquery' ), '1.0', true ); 
-	}
-
-	function register_post_types(){
-		$this->custom_posts['experiment'] = new Custom_Post(array('name' => 'Experiment'));
-		$this->custom_posts['portfolio'] = new Custom_Post(array('name' => 'Portfolio Item', 'labels' => array('menu_name' => 'Portfolio')));
-	}
-
-	function register_metaboxes(){
-		//TODO use default value in fields
-		$this->metaboxes['testimonial'] = new MetaBox(array(
-			"title" => 'Testimonial',
-			"page" => 'portfolio-item',
-			"fields" => array(
-	    		'Authors name',
-	    		array(
-	    			'name' => 'Testimonial text',
-					'type' => 'textarea'
-	    		),
-	    		'URL'
-	      	)
-	    ));
-	}
-
-	// create theme options page
-	function create_theme_options(){
+		// TODO: update constructor to take array of tabs
 		$this->theme_options = new Theme_Options();
 		$this->theme_options->addTab(array(
-			'name' => 'General',
-			'options' => array('Option 1', 'Option 2')
-		));
-
-		$this->theme_options->addTab(array(
-			'name' => 'Help',
+			'name' => 'Slider',
 			'options' => array(
-				array(
-					'name' => 'Option 3',
-					'desc' => 'Some description'
-				), 
-				'Option 4'
+				array('name' => 'Choose projects', 'type' => Theme_Options::PORTFOLIO_SELECT)
 			)
 		));
 		$this->theme_options->render();
+
+		$this->register_post_types(); 
+	}
+	
+	// Customise the footer in admin area
+	function remove_footer_admin () {
+		echo get_avatar('cool.villi@gmail.com' , '40' );
+		echo 'Theme designed and developed by <a href="http://vilmosioo.co.uk" target="_blank">Vilmos Ioo</a> and powered by <a href="http://wordpress.org" target="_blank">WordPress</a>.';
+	}
+	
+	// add custom admin styles
+	function admin_styles() {
+		wp_enqueue_style( 'flex', THEME_PATH.'/css/wp-admin.css' );
 	}
 
-	// create custom shortcodes
-	function register_shortcode( $atts, $content = null ) {
-		extract(shortcode_atts(array('id' => ''), $atts));
-		return $id ? "<script src=\"http://gist.github.com/$id.js\"></script>" : "";
+	// add custom login styles
+	function login_styles() {
+		wp_enqueue_style( 'flex', THEME_PATH.'/css/wp-login.css' );
 	}
 
-	function register_widgets(){
-	    register_widget( 'Custom_Widget' ); 
+	// complete the twitter card data from plugin
+	function twitter_custom( $twitter_card ) {
+		if ( is_array( $twitter_card ) ) {
+			$twitter_card['creator'] = '@vilmosioo';
+			$twitter_card['creator:id'] = '56978690';
+		}
+		return $twitter_card;
+	}
+
+	// add additional scripts and styles
+	function add_scripts_and_styles(){
+		wp_enqueue_script( 'flex', THEME_PATH.'/js/flex/jquery.flexslider-min.js', array( 'jquery' ), '1.0', true ); 
+		wp_register_style( 'flex', THEME_PATH.'/js/flex/flexslider.css' );
+		wp_register_script( 'play', THEME_PATH.'/js/play.js' );
+		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js' );
+		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js' );
+		wp_register_script( 'three', THEME_PATH.'/js/libs/Three.js' );
+		wp_register_script( 'trackball', THEME_PATH.'/js/libs/TrackBall.js' );
+
+	}
+
+	// register post types
+	function register_post_types(){
+		new Custom_Post(array('name' => 'Portfolio item'));
+		new Custom_Post(array('name' => 'Testimonial'));
 	}
 
 	/*
@@ -121,8 +118,8 @@ class VilmosIoo extends Hyperion{
 				'after_title' => '</h4>',
 			));
 			register_sidebar(array(
-				'name' => 'Front Page',
-				'before_widget' => '<div id="%1$s" class="widget grid-3 %2$s">',
+				'name' => 'Home page',
+				'before_widget' => '<div id="%1$s" class="widget grid-3 service %2$s">',
 				'after_widget' => '</div>',
 				'before_title' => '<h3>',
 				'after_title' => '</h3>',
@@ -132,6 +129,6 @@ class VilmosIoo extends Hyperion{
 }
 
 // Initialize the above class after theme setup
-add_action( 'after_setup_theme', create_function( '', 'global $theme; $theme = new VilmosIoo();' ) );
+add_action( 'after_setup_theme', create_function( '', 'global $theme; $theme = new HyperionBasedTheme();' ) );
 
 ?>

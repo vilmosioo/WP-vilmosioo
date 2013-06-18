@@ -8,11 +8,11 @@ get_header();
 
 <div id='main' role="main">
 	<div class='container'>
-		<section class='clearfix'>
+		<section class='content clearfix'>
 			<header>
 				<h1>
-					<?php if ( is_category() ) : ?>  <?php single_cat_title("Currently browsing:"); ?>
-					<?php elseif ( is_tag() ) : ?> <?php single_cat_title("Talking about:"); ?> 
+					<?php if ( is_category() ) : ?> Currently browsing: <?php single_cat_title(); ?>
+					<?php elseif ( is_tag() ) : ?> Talking about: <?php single_cat_title(); ?>
 					<?php elseif ( is_day() ) : ?><?php printf( __( '<span>Daily Archive</span>: %s' ), get_the_date() ); ?>
 					<?php elseif ( is_month() ) : ?><?php printf( __( '<span>Monthly Archive</span>: %s' ), get_the_date('F Y') ); ?>
 					<?php elseif ( is_year() ) : ?><?php printf( __( '<span>Yearly Archive</span>: %s' ), get_the_date('Y') ); ?>
@@ -20,16 +20,14 @@ get_header();
 					<?php endif; ?>
 				</h1>
 			</header>
-			<?php echo term_description(); ?>
-
 			<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class( 'hentry entry article clearfix' ); ?>>
+					<?php Utils::post_thumbnail( 'thumbnail' );?>
 					<header>
 						<h2 class='entry-title'><a href='<?php the_permalink(); ?>' rel='canonical'><?php the_title();?></a></h2>
 					</header>
 					<div class='entry-content'>
-						<?php Utils::post_thumbnail( 'thumbnail' );?>
-						<?php the_content(); ?> 
+						<?php the_excerpt(); ?> 
 					</div>
 					<a href='<?php the_permalink(); ?>' rel='canonical'>Continue reading &rarr;</a>
 				</article>
@@ -40,6 +38,7 @@ get_header();
 				<div class='clear'></div>
 			</aside>
 		</section>
+		<?php get_sidebar(); ?>
 	</div>
 </div>
 

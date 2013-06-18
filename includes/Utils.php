@@ -1,6 +1,5 @@
 <?php
 // STATIC RESOURCES
-
 class Utils{
 	/*
     * Return details about the last JSON error

@@ -13,7 +13,7 @@
 		<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicon.ico" />
 		<link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicon.png" />
 
-		<meta name="application-name" content="<?php echo bloginfo('name');?>" />
+		<meta name="application-name" content="Hyperion Wordpress Theme" />
 		
 		<meta name="msapplication-task" 
 			content="name=Go to Archives;
@@ -68,60 +68,67 @@
 		<script type="text/javascript">
 			document.documentElement.className = document.documentElement.className.replace('no-js', '');
 		</script>
-		
 		<!-- !html5 elements for ie<9 -->
 		<!--[if lte IE 8 ]> <script type="text/javascript">var htmlForIe = ["abbr" ,"article" ,"aside" ,"audio" ,"canvas" ,"details" ,"figcaption" ,"figure" ,"footer" ,"header" ,"hgroup" ,"mark" ,"meter" ,"nav" ,"output" ,"progress" ,"section" ,"summary" ,"time" ,"video"], htmlForIeLen = htmlForIe.length; for(i=0;i<htmlForIeLen;i++){ document.createElement(htmlForIe[i]); }</script> <![endif]-->
 
-		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>"/>
-		<!--<link rel="stylesheet" href="<?php ECHO THEME_PATH ?>/orange.css"/>-->
-
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>"/>
 		
 		<?php 
-		if ( is_singular() ) {
+		if ( is_singular() ) 
 			wp_enqueue_script( 'comment-reply' ); 
-			if ( get_the_title() == "Game Of Life"){ 
-				wp_enqueue_script('game-of-life'); 
-			}
-			if ( get_the_title() == "Arcball rotation"){ 
-				wp_enqueue_script('arcball'); 
-				?>
-				<script id="fragment" type="x-shader/x-fragment">
-					#ifdef GL_ES
-					precision highp float;
-					#endif
-					                        
-					uniform vec4 uColor;                  
-					void main() {
-					        gl_FragColor = uColor;
-					}
-				</script>
-				<script id="vertex" type="x-shader/x-vertex">
-					attribute vec2 aVertexPosition;
-					void main() {
-					        gl_Position = vec4(aVertexPosition, 0.0, 1.0);
-					}
-				</script>
-			<?php
-			}
-		}
+		if ( is_front_page() ){ 
+			wp_enqueue_script( 'flex' ); 
+			wp_enqueue_style( 'flex' ); 
+		} 
+		if( get_the_title() == 'Play' ) 
+			wp_enqueue_script( 'play' ); 
+		if( get_the_title() == 'Game Of Life' ) 
+			wp_enqueue_script( 'gameoflife' ); 
+		if( get_the_title() == 'WebGL Demo' ){
+			wp_enqueue_script( 'three' );	
+			wp_enqueue_script( 'trackball' );	
+			wp_enqueue_script( 'webgl' );	
+		} 
 		?>
-
 		<?php wp_head(); ?>
 	</head>
 	
 	<body <?php body_class(); ?>>
+
+		<?php if(is_single()) :?>
+			<div id="fb-root"></div>
+			<script>(function(d, s, id) {
+	  			var js, fjs = d.getElementsByTagName(s)[0];
+	  			if (d.getElementById(id)) return;
+	  			js = d.createElement(s); js.id = id;
+	  			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=276045295746597";
+	  			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		<?php endif; ?>
+
+		<script type='text/javascript'>
+			jQuery(function(){
+				jQuery('#menu-button').click(function(){
+					jQuery('nav').toggleClass('active');
+					jQuery(this).toggleClass('active');
+				});	
+			});
+		</script>
+
 		<header id='header'>
-			<div class='container'>
-				<a href='<?php echo HOME_URL; ?>' id='logo'>
-					<img src='<?php echo THEME_PATH; ?>/images/favicon.png' title='<?php bloginfo('name'); ?>'>
+			<div class='container clearfix'>
+				<a href='<?php echo home_url(); ?>' id='logo'>
 					<h1><?php bloginfo('name'); ?></h1>
-				</a>
+					<h2><?php bloginfo('description'); ?></h2>
+					<span><img class='msPinSite' src='<?php echo get_template_directory_uri(); ?>/images/w-logo.png' /></span>
+				</a><!--#logo-->
+				<span id='menu-button'>Menu</span>
 				<nav>
-					<?php wp_nav_menu( array(
-						'menu' => 'Main', 
-						'container' => false, 
-						'items_wrap'      => '<ul id="%1$s" class="%2$s"><li class="menu-button"><a>Menu</a></li>%3$s</ul>',)); ?>
-				</nav>
+					<?php wp_nav_menu( array('menu' => 'Main', 'container' => false, )); ?>
+				</nav><!--#menu-button-->
 			</div>
-		</header>
+		</header><!--#header-->
