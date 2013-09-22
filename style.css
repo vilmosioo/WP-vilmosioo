@@ -56,6 +56,7 @@ blockquote p.name{ color:#fff; }
 blockquote p.name:before, blockquote p.name::before{ content:"-- "; }
 
 .clear{clear:both;}
+.clearfix:after{ content:''; display:block; clear:both;}
 .tcenter{ text-align:center;}
 .hidden{ display:none;}
 .button{ font-size:0.875em; display:inline-block; padding:5px 15px; text-decoration:none; color:#fff; cursor:pointer; border:1px solid #111; -webkit-border-radius:5px; border-radius:5px; }
@@ -103,7 +104,7 @@ input[type='submit']:hover, nav a:hover:hover, .blue:hover, .comment-reply-link:
 .container{ max-width:1040px; margin:0 auto; padding:0 2%; clear:both; }
 .content{width:75%; float:left; margin:0 0 60px; }
 .content iframe{ width:640px; height:360px; margin:0 auto 15px; }
-.page .content{ width:100%; height:auto; float:none;}
+.full.content{ width:100%; height:auto; float:none;}
 #menu-button{ display: none; }
 
 #actionbuttons{ text-align:center; margin:0 0 40px;}
@@ -143,7 +144,7 @@ nav{ float:right; margin:20px 0 0 50px; }
 nav ul{ margin:0; padding:0;}
 nav li{ float:left; margin:0 0 0 5px; display:inline-block;}
 nav a{ padding:2px 10px; color:#aaa; font-size:1.0625em; font-weight:450; text-decoration:none; display:inline-block; }
-nav .current_page_parent a, nav .current-menu-item a, nav a:hover{ text-decoration:none; color:#fff; -webkit-border-radius:5px; border-radius:5px;
+nav .current-menu-item a, nav a:hover{ text-decoration:none; color:#fff; -webkit-border-radius:5px; border-radius:5px;
 background: rgb(65,180,255) url('images/button-bg.png') repeat-x;
   background-image: -moz-linear-gradient(top, rgb(65,180,255), #156DA6);
   background-image: -ms-linear-gradient(top, rgb(65,180,255), #156DA6);
@@ -164,14 +165,14 @@ nav li:last-child:before, nav li:last-child::before{ content:""; float:left; dis
 .screenshot img{ border:none; margin:0; }
 .screenshot:hover img{ border:none; }
 
-.page .portfolio-item{ margin:20px 0 60px; padding:0 0 40px; border-bottom:1px solid rgba(200,200,200,0.5); position:relative; top:0; left:0; }
-.page .portfolio-item:last-child{ border-bottom:none; }
-.page .portfolio-item aside{ height:auto; margin:0 0 20px 0;}
-.page .portfolio-item .img{ -webkit-border-radius:15px; border-radius:15px; box-shadow:0 0 7px 1px #111; position:relative; top:0; left:0; display:block; }
+.archive .portfolio-item{ margin:20px 0 60px; padding:0 0 40px; border-bottom:1px solid rgba(200,200,200,0.5); position:relative; top:0; left:0; }
+.archive .portfolio-item:last-child{ border-bottom:none; }
+.archive .portfolio-item aside{ height:auto; margin:0 0 20px 0;}
+.archive .portfolio-item .img{ -webkit-border-radius:15px; border-radius:15px; box-shadow:0 0 7px 1px #111; position:relative; top:0; left:0; display:block; }
 
-.page .portfolio-item .img img{ width:100%; height:auto; border:1px solid #000; -webkit-border-radius:15px; border-radius:15px; }
-.page .portfolio-item .img img:hover { border:1px solid #ddd; }
-.page .portfolio-item .img:before, .page .portfolio-item .img:after { z-index: -1; position: absolute; content: "";bottom: 15px;left: 10px;width: 50%;top: 80%;max-width:450px;background: rgba(0, 0, 0, 0.7);
+.archive .portfolio-item .img img{ width:100%; height:auto; border:1px solid #000; -webkit-border-radius:15px; border-radius:15px; }
+.archive .portfolio-item .img img:hover { border:1px solid #ddd; }
+.archive .portfolio-item .img:before, .archive .portfolio-item .img:after { z-index: -1; position: absolute; content: "";bottom: 15px;left: 10px;width: 50%;top: 80%;max-width:450px;background: rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);
   -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
   box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
@@ -181,7 +182,7 @@ nav li:last-child:before, nav li:last-child::before{ content:""; float:left; dis
   -ms-transform: rotate(-3deg);
   transform: rotate(-3deg);
 }
-.page .portfolio-item .img:after{left: auto;right: 10px;
+.archive .portfolio-item .img:after{left: auto;right: 10px;
   -webkit-transform: rotate(3deg);
   -moz-transform: rotate(3deg);
   -o-transform: rotate(3deg);
@@ -485,7 +486,7 @@ background: -moz-linear-gradient(top, #333 0%, #111 100%);
   }
   nav.active{ display:block;}
   nav a{ text-align:left; padding:4px 2%; display:block; border-bottom:1px solid #111; }
-  nav .current_page_parent a, nav .current-menu-item a, nav a:hover{ -webkit-border-radius:0; border-radius:0; }
+  nav .current-menu-item a, nav a:hover{ -webkit-border-radius:0; border-radius:0; }
   nav li:last-child:before, nav li:last-child::before{ display:none; }
   
   .grid-2, .grid-2-3, .grid-3-4, .grid-3, .grid-4{ display:block; width:auto; float:none; margin:0 0 20px; }

@@ -76,23 +76,6 @@
 		<link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>"/>
 		
-		<?php 
-		if ( is_singular() ) 
-			wp_enqueue_script( 'comment-reply' ); 
-		if ( is_front_page() ){ 
-			wp_enqueue_script( 'flex' ); 
-			wp_enqueue_style( 'flex' ); 
-		} 
-		if( get_the_title() == 'Play' ) 
-			wp_enqueue_script( 'play' ); 
-		if( get_the_title() == 'Game Of Life' ) 
-			wp_enqueue_script( 'gameoflife' ); 
-		if( get_the_title() == 'WebGL Demo' ){
-			wp_enqueue_script( 'three' );	
-			wp_enqueue_script( 'trackball' );	
-			wp_enqueue_script( 'webgl' );	
-		} 
-		?>
 		<?php wp_head(); ?>
 	</head>
 	
@@ -120,15 +103,14 @@
 		</script>
 
 		<header id='header'>
-			<div class='container clearfix'>
+			<div class='container'>
 				<a href='<?php echo home_url(); ?>' id='logo'>
 					<h1><?php bloginfo('name'); ?></h1>
 					<h2><?php bloginfo('description'); ?></h2>
 					<span><img class='msPinSite' src='<?php echo get_template_directory_uri(); ?>/images/w-logo.png' /></span>
 				</a><!--#logo-->
-				<span id='menu-button'>Menu</span>
-				<nav>
-					<?php wp_nav_menu( array('menu' => 'Main', 'container' => false, )); ?>
-				</nav><!--#menu-button-->
+				<span id='menu-button'>Menu</span><!--#menu-button-->
+				<nav><?php wp_nav_menu(array('menu' => 'Main', 'container' => false)); ?></nav>
+				<div class='clear'></div>
 			</div>
 		</header><!--#header-->

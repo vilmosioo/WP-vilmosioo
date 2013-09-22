@@ -5,7 +5,7 @@
 		<section class='content clearfix'>
 			<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class( 'hentry entry article clearfix' ); ?>>
-					<?php Utils::post_thumbnail( 'thumbnail' );?>
+					<?php Utils::post_thumbnail('thumbnail', 'cutout');?>
 					<header>
 						<h2 class='entry-title'><a href='<?php the_permalink(); ?>' rel='canonical'><?php the_title();?></a></h2>
 					</header>
