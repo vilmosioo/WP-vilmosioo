@@ -1,3 +1,6 @@
+			</div>
+		</div><!--#main-->
+
 		<footer role="contentinfo">
 			<div class='container clearfix'>
 				<?php dynamic_sidebar('Footer'); ?>

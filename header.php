@@ -114,3 +114,6 @@
 				<div class='clear'></div>
 			</div>
 		</header><!--#header-->
+
+		<div id='main' role="main">
+		  <div class='container'>

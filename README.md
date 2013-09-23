@@ -1,30 +1,9 @@
-# About Hyperion
+# About this theme
 
-The **Hyperion blank WordPress Theme**  is a highly customised developer's theme, having a lots of features, suitable for a wide range of projects. 
+The **Vilmos Ioo** theme is the current WordPress theme being displayed on vilmosioo.co.uk. It is used to showcase my portfolio online and it is sometimes used as a developer's environment (things may break sometimes). It is based on the Hyperion theme. 
 
-## Features
+It has been open-sourced because it's purpose is to showcase my development skills. 
 
-* Responsive design
-* HTML5 structure
-* Included HTML5 Boilerplate and Moderniser
-* Microformats
-* Widget ready, custom header and custom background
-* Custom post sample
-* Custom login page and dashboard
-* Internet Explorer 9 pinned tasks
-* Sample theme options page
+## Comments welcome
 
-## Theme files
-
-* 404 Template(404.php)
-* Comments(comments.php)
-* Footer(footer.php)
-* Header(header.php)
-* Main Index Template(index.php)
-* Search Form(searchform.php)
-* Sidebar(sidebar.php)
-* Theme Functions(functions.php)
-* loop-custom.php(loop-custom.php)
-* loop-related.php(loop-related.php)
-* loop.php(loop.php)
-* theme-options-page.php(theme-options-page.php)
+For feedback and/or comments (or just say hi) you can find me on [twitter](http://twitter.com/vilmosioo).
