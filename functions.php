@@ -91,9 +91,6 @@ class VilmosIoo extends Hyperion{
 
 	// add additional scripts and styles
 	function add_scripts_and_styles(){
-		if(is_singular()){
-			wp_enqueue_script( 'comment-reply' ); 
-		}
 		if(is_front_page()){ 
 			wp_enqueue_script( 'flex' ); 
 			wp_enqueue_style( 'flex' ); 

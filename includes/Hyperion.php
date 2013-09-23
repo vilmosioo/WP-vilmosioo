@@ -21,7 +21,7 @@ class Hyperion{
 		
 		//add filters
 		add_filter( 'manage_upload_columns', array( &$this, 'upload_columns'));
-	    add_filter( 'post_thumbnail_html', array( &$this, 'remove_thumbnail_dimensions' ), 10 );
+    add_filter( 'post_thumbnail_html', array( &$this, 'remove_thumbnail_dimensions' ), 10 );
 		add_filter( 'image_send_to_editor', array( &$this, 'remove_thumbnail_dimensions' ), 10 );
 		add_filter( 'the_content', array( &$this, 'remove_thumbnail_dimensions' ), 10 );	
 		add_filter( 'the_content', array( &$this, 'filter_ptags_on_images' ));
@@ -36,6 +36,9 @@ class Hyperion{
 		wp_enqueue_script( 'modernizr', THEME_PATH.'/js/libs/modernizr-2.0.6.min.js', array(), '2.0.6', true ); 
 		wp_enqueue_script( 'default', THEME_PATH.'/js/script.js', array( 'jquery' ), '1.0', true ); 
 		wp_enqueue_script( 'plugins', THEME_PATH.'/js/plugins.js', array( 'jquery' ), '1.0', true ); 
+		if(is_singular()){
+			wp_enqueue_script( 'comment-reply' ); 
+		}
 	}
 
 	// just check if the current structure begins with /blog/ remove that and return the stripped structure 

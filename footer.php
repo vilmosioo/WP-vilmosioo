@@ -7,7 +7,7 @@
 				<div class='clear'></div>
 				<hr/>
 				<div class='fright'>
-					<?php wp_nav_menu( array('menu' => 'H_main', 'container' => false, )); ?>
+					<?php wp_nav_menu( array('menu' => 'Main', 'container' => false, )); ?>
 				</div>
 				<p>Copyright Vilmos Ioo <?php echo date('Y');?></p>
 			</div>
