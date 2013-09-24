@@ -1,0 +1,8 @@
+{
+  "name": "vilmosioo2.0",
+  "version": "1.1",
+  "main": "index.php",
+  "dependencies": {
+    "wordpress-tools": "~0.0.1"
+  }
+}

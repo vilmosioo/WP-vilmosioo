@@ -1,7 +1,7 @@
 <?php
-require_once 'includes/Hyperion.php';
-require_once 'includes/Theme_Options.php';
-require_once 'includes/Custom_Post.php';
+require_once 'bower_components/wordpress-tools/Hyperion.php';
+require_once 'bower_components/wordpress-tools/Theme_Options.php';
+require_once 'bower_components/wordpress-tools/Custom_Post.php';
 
 class VilmosIoo extends Hyperion{
 	private $theme_options;
