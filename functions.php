@@ -1,24 +1,7 @@
 <?php
-// define constants
-define( 'THEME_PATH', get_bloginfo( 'stylesheet_directory' ) );
-define( 'HOME_URL', home_url() );
-
-if ( ! isset( $content_width ) ) $content_width = 1200;
-
 require_once 'includes/Hyperion.php';
-require_once 'includes/Utils.php';
 require_once 'includes/Theme_Options.php';
-require_once 'includes/Metabox.php';
 require_once 'includes/Custom_Post.php';
-require_once 'includes/Gist_Manager.php';
-
-/*
-
-get_template_part( 'theme-options-page' ); 
-
-*/
-?>
-<?php
 
 class VilmosIoo extends Hyperion{
 	private $theme_options;
@@ -108,8 +91,8 @@ class VilmosIoo extends Hyperion{
 
 	// register post types
 	function register_post_types(){
-		new Custom_Post(array('name' => 'Portfolio item'));
-		new Custom_Post(array('name' => 'Testimonial'));
+		Custom_Post::create(array('name' => 'Portfolio item'));
+		Custom_Post::create(array('name' => 'Testimonial'));
 	}
 
 	/*
