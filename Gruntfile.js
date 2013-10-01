@@ -63,7 +63,7 @@ module.exports = function(grunt) {
 				banner: '/*! <%= pkg.name %> - v<%= pkg.version %> */',
 				preserveComments: false
 			},
-			my_target: {
+			dist: {
 				expand: true,
 				cwd: '<%= config.app %>',
 				src: '**/*.js',
@@ -88,15 +88,20 @@ module.exports = function(grunt) {
 				cwd: 'components',
 				src: [
 					'jquery/jquery.min.js',
-					'modernizr/modernizr.js',
 					'font-awesome/css/font-awesome.min.css',
 					'font-awesome/css/font-awesome-ie7.min.css',
 					'font-awesome/font/*',
-					'modernizr/modernizr.js',
 					'wordpress-tools/**/*'
 				],
 				dest: '<%= config.dist %>/components'
 			},
+		},
+		modernizr: {
+			devFile: "components/modernizr/modernizr.js",
+			outputFile: "dist/components/modernizr/modernizr.js",
+			files: [
+				'app/**/*'
+			]
 		}
 	});
 
@@ -107,6 +112,7 @@ module.exports = function(grunt) {
 		'cssmin', // minify all css files from app folder and move them to dist folder
 		'uglify', // uglify all JS files from app folder and move them to in the dist folder
 		'copy', // copy rest of files from app folder to dist (php ,html, txt, ico, fonts) and copy components in dist
+		'modernizr' // parse mdoernizr and copy only necessary tests
 	]);
 
 	grunt.registerTask('server', [

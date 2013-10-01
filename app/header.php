@@ -61,13 +61,11 @@
 			bloginfo( 'name' );
 			$site_description = get_bloginfo( 'description', 'display' );
 			if ( $site_description && ( is_home() || is_front_page() ) ) { echo " | $site_description"; }
-			if ( $paged >= 2 || $page >= 2 ) { echo ' | ' . sprintf( __('Page %s', 'ntz'), max( $paged, $page ) );} 
+			if ( $paged >= 2 || $page >= 2 ) { echo ' | ' . sprintf( 'Page %s', max( $paged, $page ) );} 
 		?></title>
 		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<script type="text/javascript">
-			document.documentElement.className = document.documentElement.className.replace('no-js', '');
-		</script>
+		
 		<!-- !html5 elements for ie<9 -->
 		<!--[if lte IE 8 ]> <script type="text/javascript">var htmlForIe = ["abbr" ,"article" ,"aside" ,"audio" ,"canvas" ,"details" ,"figcaption" ,"figure" ,"footer" ,"header" ,"hgroup" ,"mark" ,"meter" ,"nav" ,"output" ,"progress" ,"section" ,"summary" ,"time" ,"video"], htmlForIeLen = htmlForIe.length; for(i=0;i<htmlForIeLen;i++){ document.createElement(htmlForIe[i]); }</script> <![endif]-->
 

@@ -48,7 +48,6 @@ class VilmosIoo extends Hyperion{
 	// Register scripts and styles with WP
 	function register_scripts_and_styles(){
 		wp_register_script( 'modernizr', THEME_PATH.'/components/modernizr/modernizr.js', array(), '2.6.2', true ); 
-		wp_register_script( 'modernizrload', THEME_PATH.'/js/libs/modernizrload.min.js', array( 'modernizr' ), '2.6.2', true ); 
 		wp_register_script( 'flex', THEME_PATH.'/js/flex/jquery.flexslider-min.js', array( 'jquery' ), '1.0', true ); 
 		wp_register_style( 'flex', THEME_PATH.'/js/flex/flexslider.css' );
 		wp_register_script( 'play', THEME_PATH.'/js/play.js' );
@@ -77,7 +76,6 @@ class VilmosIoo extends Hyperion{
 	// add additional scripts and styles
 	function add_scripts_and_styles(){
 		wp_enqueue_script( 'modernizr' );
-		wp_enqueue_script( 'modernizrload' );
 		if(is_front_page()){ 
 			wp_enqueue_script( 'flex' ); 
 			wp_enqueue_style( 'flex' ); 
