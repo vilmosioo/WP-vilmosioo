@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%= config.app %>/**/*.js',
+				'<%= config.app %>/js/*.js',
 				'!<%= config.app %>/**/*.min.js'
 			]
 		},
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('build', [
 		'clean', // delete dist folder
-		// 'jshint', // validate all js files
+		'jshint', // validate all js files
 		'compass', // process all scss file and dump result in .tmp
 		'cssmin', // minify all css files from app folder and move them to dist folder
 		'uglify', // uglify all JS files from app folder and move them to in the dist folder

@@ -82,6 +82,7 @@
     "globals"       : {
         "jQuery": false,
         "$": false,
-        "Modernizr": false
+        "Modernizr": false,
+        "THREE": false
     }        // additional predefined global variables
 }
