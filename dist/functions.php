@@ -50,11 +50,9 @@ class VilmosIoo extends Hyperion{
 		wp_register_script( 'modernizr', THEME_PATH.'/components/modernizr/modernizr.js', array(), '2.6.2', true ); 
 		wp_register_script( 'flex', THEME_PATH.'/js/flex/jquery.flexslider-min.js', array( 'jquery' ), '1.0', true ); 
 		wp_register_style( 'flex', THEME_PATH.'/js/flex/flexslider.css' );
-		wp_register_script( 'play', THEME_PATH.'/js/play.js' );
-		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js' );
-		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js' );
-		wp_register_script( 'three', THEME_PATH.'/js/libs/Three.js' );
-		wp_register_script( 'trackball', THEME_PATH.'/js/libs/TrackBall.js' );
+		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js', array( 'default' ), '1.0', true);
+		wp_register_script( 'play', THEME_PATH.'/js/play.js', array( 'default' ), '1.0', true);
+		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js', array( 'default' ), '1.0', true);
 	}
 
 	// Customise the footer in admin area
@@ -85,8 +83,6 @@ class VilmosIoo extends Hyperion{
 		if(get_the_title() == 'Game Of Life' ) 
 			wp_enqueue_script( 'gameoflife' ); 
 		if(get_the_title() == 'WebGL Demo' ){
-			wp_enqueue_script( 'three' );	
-			wp_enqueue_script( 'trackball' );	
 			wp_enqueue_script( 'webgl' );	
 		} 
 	}

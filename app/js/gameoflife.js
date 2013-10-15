@@ -1,5 +1,4 @@
 'use strict';
-var interval = 1000 / 60; // 60 frames for every 1000 ms
 var N = 125; // width
 var M = Math.floor(N*666/1000); // height
 var grid = new Array(N*M);
@@ -8,17 +7,6 @@ var running = false;
 var context = null;
 var canvas = null;
 var width = 0, height = 0;
-
-window.requestAnimFrame = (function(){
-	return window.requestAnimationFrame ||
-	window.webkitRequestAnimationFrame ||
-	window.mozRequestAnimationFrame ||
-	window.oRequestAnimationFrame ||
-	window.msRequestAnimationFrame ||
-	function(callback){
-		window.setTimeout(callback, interval);
-	};
-})();
 
 function alive(i, j){
 	return grid[i*N+j] === 1;
@@ -157,7 +145,7 @@ function draw(){
 			}
 		}
 	}
-	window.requestAnimFrame(function(){
+	window.requestAnimationFrame(function(){
 		draw();
 	});
 }
@@ -202,7 +190,7 @@ function init(test){
 		}
 		column++;
 	}
-	window.requestAnimFrame(function(){
+	window.requestAnimationFrame(function(){
 		draw();
 	});
 }

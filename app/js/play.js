@@ -1,6 +1,6 @@
 'use strict';
 
-var interval = 1000 / 24, width = 0, height = 0, canvas;
+var width = 0, height = 0, canvas;
 var r = 65;
 var g = 180;
 var b = 255;
@@ -81,7 +81,7 @@ function draw(){
 	r = Math.round(r + 5*Math.random()-2.5);
 	g = Math.round(g + 5*Math.random()-2.5);
 	b = Math.round(b + 5*Math.random()-2.5);
-	window.requestAnimFrame(function(){
+	window.requestAnimationFrame(function(){
 		draw();
 	});
 }
@@ -99,17 +99,6 @@ window.onload = function(){
 	};
 	draw();
 };
-
-window.requestAnimFrame = (function(){
-	return window.requestAnimationFrame ||
-	window.webkitRequestAnimationFrame ||
-	window.mozRequestAnimationFrame ||
-	window.oRequestAnimationFrame ||
-	window.msRequestAnimationFrame ||
-	function(callback){
-		window.setTimeout(callback, interval);
-	};
-})();
 
 /*CANVAS
 createLinearGradient(x0, y0, x1, y1) paints along a line from (x0, y0) to (x1, y1).

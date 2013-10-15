@@ -64,9 +64,21 @@ module.exports = function(grunt) {
 				preserveComments: false
 			},
 			dist: {
+				files: {
+					'<%= config.dist %>/js/play.js': '<%= config.app %>/js/play.js',
+					'<%= config.dist %>/js/gameoflife.js': '<%= config.app %>/js/gameoflife.js',
+					'<%= config.dist %>/js/script.js': '<%= config.app %>/js/script.js',
+					'<%= config.dist %>/js/webgl.js': [
+						'<%= config.app %>/js/libs/Three.js',
+						'<%= config.app %>/js/libs/Trackball.js',
+						'<%= config.app %>/js/webgl.js'
+					]
+				}
+			},
+			flex: {
 				expand: true,
 				cwd: '<%= config.app %>',
-				src: '**/*.js',
+				src: 'js/flex/**/*.js',
 				dest: '<%= config.dist %>'
 			}
 		},
@@ -98,7 +110,7 @@ module.exports = function(grunt) {
 		},
 		modernizr: {
 			devFile: "components/modernizr/modernizr.js",
-			outputFile: "dist/components/modernizr/modernizr.js",
+			outputFile: "<%= config.dist %>/components/modernizr/modernizr.js",
 			files: [
 				'app/**/*'
 			]
