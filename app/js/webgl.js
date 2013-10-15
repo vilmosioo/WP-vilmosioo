@@ -85,7 +85,7 @@ var APP = (function (app, $) {
 		scene = new THREE.Scene();
 		// the camera starts at 0,0,0 so pull it back
 		camera.position.set(0,400,1000);
-		controls = new THREE.TrackballControls( camera, renderer.domElement );
+		controls = new THREE.TrackballControls( camera );
 		controls.rotateSpeed = 2.0;
 		controls.zoomSpeed = 2.4;
 		controls.panSpeed = 1.6;
@@ -103,7 +103,7 @@ var APP = (function (app, $) {
 		var sphereMaterial = new THREE.MeshLambertMaterial({
 			color: 0xCC0000
 		});
-		sphereMaterial = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture("http://vilmosioo.co.uk/wp-content/uploads/2013/04/map.jpg") });
+		sphereMaterial = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture("map.jpg") });
 		var radius = 100, segments = 64, rings = 64;
 		sphere = new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, rings),

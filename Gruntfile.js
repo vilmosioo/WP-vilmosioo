@@ -69,8 +69,8 @@ module.exports = function(grunt) {
 					'<%= config.dist %>/js/gameoflife.js': '<%= config.app %>/js/gameoflife.js',
 					'<%= config.dist %>/js/script.js': '<%= config.app %>/js/script.js',
 					'<%= config.dist %>/js/webgl.js': [
-						'<%= config.app %>/js/libs/Three.js',
-						'<%= config.app %>/js/libs/Trackball.js',
+						'components/threejs/build/three.min.js',
+						'components/threejs/examples/js/controls/TrackballControls.js',
 						'<%= config.app %>/js/webgl.js'
 					]
 				}
