@@ -91,7 +91,7 @@ module.exports = function(grunt) {
 					'**/*.{png,jpg,jpeg,gif}',
 					'**/*.{webp,svg}',
 					'**/*.{eot,svg,ttf,woff}',
-					'**/*.{md}'
+					'**/*.{stl,md}'
 				],
 				dest: '<%= config.dist %>'
 			},

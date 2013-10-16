@@ -103,7 +103,7 @@ var APP = (function (app, $) {
 		var sphereMaterial = new THREE.MeshLambertMaterial({
 			color: 0xCC0000
 		});
-		sphereMaterial = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture("map.jpg") });
+		sphereMaterial = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture("http://dev.vilmosioo.co.uk/wp-content/themes/vilmosioo1.1/js/map.jpg") });
 		var radius = 100, segments = 64, rings = 64;
 		sphere = new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, rings),
@@ -138,7 +138,7 @@ var APP = (function (app, $) {
 		scene.add(directionalLight);
 		// draw!
 		window.requestAnimationFrame(app.animloop);
-		app.load("http://vilmosioo.co.uk/wp-content/themes/vilmosioo/js/sun.stl");
+		app.load("http://dev.vilmosioo.co.uk/wp-content/themes/vilmosioo1.1/js/sun.stl");
 	};
 	app.animloop = function(){
 		controls.update();
