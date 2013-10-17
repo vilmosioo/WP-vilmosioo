@@ -15,7 +15,7 @@ class VilmosIoo extends Hyperion{
 		
 		// add actions and filters
 		add_action( 'widgets_init', array( &$this, 'register_sidebars' ) );
-		add_action( 'wp_enqueue_scripts', array( &$this, 'add_scripts_and_styles') );  
+		add_action( 'wp_enqueue_scripts', array( &$this, 'add_scripts_and_styles') );
 		add_action( 'login_enqueue_scripts', array( &$this, 'login_styles'));
 		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_styles'));
 		add_filter( 'admin_footer_text', array( &$this, 'remove_footer_admin'));
@@ -27,7 +27,6 @@ class VilmosIoo extends Hyperion{
 
 		// final bits 
 		$this->register_post_types(); 
-		$this->register_scripts_and_styles();
 		$this->theme_options();
 	}
 	
@@ -43,16 +42,6 @@ class VilmosIoo extends Hyperion{
 		));
 		// This call is annoying
 		$this->theme_options->render();
-	}
-
-	// Register scripts and styles with WP
-	function register_scripts_and_styles(){
-		wp_register_script( 'modernizr', THEME_PATH.'/components/modernizr/modernizr.js', array(), '2.6.2', true ); 
-		wp_register_script( 'flex', THEME_PATH.'/js/flex/jquery.flexslider-min.js', array( 'jquery' ), '1.0', true ); 
-		wp_register_style( 'flex', THEME_PATH.'/js/flex/flexslider.css' );
-		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js', array( 'default' ), '1.0', true);
-		wp_register_script( 'play', THEME_PATH.'/js/play.js', array( 'default' ), '1.0', true);
-		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js', array( 'default' ), '1.0', true);
 	}
 
 	// Customise the footer in admin area
@@ -73,6 +62,15 @@ class VilmosIoo extends Hyperion{
 
 	// add additional scripts and styles
 	function add_scripts_and_styles(){
+		// register scripts and styles
+		wp_register_script( 'modernizr', THEME_PATH.'/components/modernizr/modernizr.js', array(), '2.6.2', true ); 
+		wp_register_script( 'flex', THEME_PATH.'/js/flex/jquery.flexslider-min.js', array( 'jquery' ), '1.0', true ); 
+		wp_register_style( 'flex', THEME_PATH.'/js/flex/flexslider.css' );
+		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js', array( 'default' ), '1.0', true);
+		wp_register_script( 'play', THEME_PATH.'/js/play.js', array( 'default' ), '1.0', true);
+		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js', array( 'default' ), '1.0', true);
+
+		// enqueue scripts and styles
 		wp_enqueue_script( 'modernizr' );
 		if(is_front_page()){ 
 			wp_enqueue_script( 'flex' ); 
