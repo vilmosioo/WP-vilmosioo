@@ -2,6 +2,7 @@
 
 var APP = (function (app, $) {
 	var sphere, renderer, camera, scene, controls;
+	
 	app.load = function(source){
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', source, true);
@@ -78,6 +79,7 @@ var APP = (function (app, $) {
 			ASPECT = WIDTH / HEIGHT,
 			NEAR = 0.1,
 			FAR = 10000;
+
 		// create a WebGL renderer, camera
 		// and a scene
 		renderer = new THREE.WebGLRenderer({antialias:true});
@@ -99,11 +101,9 @@ var APP = (function (app, $) {
 		renderer.setClearColor(0xFFFFFF, 1);
 		// attach the render-supplied DOM element
 		$container.append(renderer.domElement);
+
 		// create the sphere's material
-		var sphereMaterial = new THREE.MeshLambertMaterial({
-			color: 0xCC0000
-		});
-		sphereMaterial = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture("http://dev.vilmosioo.co.uk/wp-content/themes/vilmosioo1.1/js/map.jpg") });
+		var sphereMaterial = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture("http://dev.vilmosioo.co.uk/wp-content/themes/vilmosioo1.1/js/map.jpg") });
 		var radius = 100, segments = 64, rings = 64;
 		sphere = new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, rings),
@@ -111,7 +111,8 @@ var APP = (function (app, $) {
 		);
 		sphere.position.set(0,radius,0);
 		// add the sphere to the scene
-		// scene.add(sphere);
+		scene.add(sphere);
+
 		var planeW = 50; // pixels
 		var planeH = 50; // pixels
 		var numW = 200; // how many wide (50*50 = 2500 pixels wide)
@@ -124,28 +125,33 @@ var APP = (function (app, $) {
 		scene.add(plane);
 		// and the camera
 		scene.add(camera);
+
 		// create a point light
 		var pointLight = new THREE.PointLight( 0xFFFFFF );
 		// set its position
 		pointLight.position.set(0,0,1000).normalize();
 		// add to the scene
 		scene.add(pointLight);
+
 		var ambientLight = new THREE.AmbientLight(0x444444);
 		scene.add(ambientLight);
+
 		// directional lighting
 		var directionalLight = new THREE.DirectionalLight(0xffffff);
 		directionalLight.position.set(0,0,1000).normalize();
 		scene.add(directionalLight);
+
 		// draw!
 		window.requestAnimationFrame(app.animloop);
-		app.load("http://dev.vilmosioo.co.uk/wp-content/themes/vilmosioo1.1/js/sun.stl");
 	};
+
 	app.animloop = function(){
 		controls.update();
 		sphere.rotation.y+=0.003;
 		renderer.render(scene, camera);
 		window.requestAnimationFrame(app.animloop);
 	};
+
 	return app;
 }(APP || {}, jQuery));
 
