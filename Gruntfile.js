@@ -95,22 +95,26 @@ module.exports = function(grunt) {
 				],
 				dest: '<%= config.dist %>'
 			},
-			components: {
+			jquery: {
 				expand: true,
 				cwd: 'components',
 				src: [
 					'jquery/jquery.min.js',
-					'font-awesome/css/font-awesome.min.css',
-					'font-awesome/css/font-awesome-ie7.min.css',
-					'font-awesome/font/*',
-					'wordpress-tools/**/*'
 				],
-				dest: '<%= config.dist %>/components'
+				dest: '<%= config.dist %>/js/vendor'
 			},
+			components: {
+				expand: true,
+				cwd: 'components/wordpress-tools',
+				src: [
+					'**/*'
+				],
+				dest: '<%= config.dist %>/inc'
+			}
 		},
 		modernizr: {
 			devFile: "components/modernizr/modernizr.js",
-			outputFile: "<%= config.dist %>/components/modernizr/modernizr.js",
+			outputFile: "<%= config.dist %>/js/vendor/modernizr/modernizr.js",
 			files: [
 				'app/**/*'
 			]
