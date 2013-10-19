@@ -19,12 +19,11 @@
 		<![endif]-->
 		
 		<?php wp_footer(); ?>
-		<?php 
-		if ( is_front_page() ){ 
-			echo "
+		
+		<?php if ( is_front_page() ){ ?>
 			<script type='text/javascript'>
 				jQuery(window).load(function() {
-				        jQuery('#slideshow-flex').flexslider({ 
+	        jQuery('#slideshow-flex').flexslider({ 
 						animation: 'fade',
 						controlsContainer: '.flexslider-container',
 						directionNav: false,
@@ -32,15 +31,7 @@
 					});
     				});
 			</script>
-			";
-		} 
-		?>
-		<script>!window.jQuery && document.write(unescape('%3Cscript src="<?php echo THEME_PATH; ?>/js/vendor/jquery/jquery.min.js"%3E%3C/script%3E'))</script>
-		<script> // Change UA-XXXXX-X to be your site's ID
-			window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-			Modernizr.load({
-			  load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-			});
-		</script>
+		<?php	} ?>
+		<script type='text/javascript'>!window.jQuery && document.write(unescape('%3Cscript src="<?php echo THEME_PATH; ?>/js/vendor/jquery/jquery.min.js"%3E%3C/script%3E'))</script>
 	</body>
 </html>

@@ -27,31 +27,31 @@
 		<script type="text/javascript">//<![CDATA[
 			var g_ext = null;        // Global variable.
 			window.onload = function(){
-    				try {
-    					if (window.external.msIsSiteMode()) {
-        					g_ext = window.external;
-        					// Continue initialization.
+						try {
+							if (window.external.msIsSiteMode()) {
+									g_ext = window.external;
+									// Continue initialization.
 							g_ext.msSiteModeClearJumpList();
 							g_ext.msSiteModeCreateJumplist('Latests posts');
 							<?php
 								$my_query = new WP_Query( array( 'posts_per_page' => 5, 'order' => 'DESC' ) );
-							 	if( $my_query->have_posts() ) while( $my_query->have_posts() ) {
-							 		$my_query->the_post(); ?>
+								if( $my_query->have_posts() ) while( $my_query->have_posts() ) {
+									$my_query->the_post(); ?>
 												g_ext.msSiteModeAddJumpListItem(
 														'<?php the_title(); ?>', 
 														'<?php the_permalink(); ?>',
 														'<?php bloginfo('stylesheet_directory'); ?>/images/favicon.ico'
 												);
-								 	<?php		
+									<?php		
 								}
 								wp_reset_postdata();
 							?>
 							g_ext.msSiteModeShowJumplist();
-    					}
-    				}
-    				catch (ex) {
-        					// Fail silently.
-    				}
+							}
+						}
+						catch (ex) {
+									// Fail silently.
+						}
 			}
 		//]]></script>
 
@@ -75,6 +75,13 @@
 		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>"/>
 		
 		<?php wp_head(); ?>
+		
+		<script type='text/javascript'>
+			window._gaq = [['_setAccount','UA-27809256-1'],['_trackPageview'],['_trackPageLoadTime']];
+			Modernizr.load({
+				load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+			});
+		</script>
 	</head>
 	
 	<body <?php body_class(); ?>>
@@ -82,11 +89,11 @@
 		<?php if(is_single()) :?>
 			<div id="fb-root"></div>
 			<script>(function(d, s, id) {
-	  			var js, fjs = d.getElementsByTagName(s)[0];
-	  			if (d.getElementById(id)) return;
-	  			js = d.createElement(s); js.id = id;
-	  			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=276045295746597";
-	  			fjs.parentNode.insertBefore(js, fjs);
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) return;
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=276045295746597";
+					fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));</script>
 			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 		<?php endif; ?>
@@ -114,4 +121,4 @@
 		</header><!--#header-->
 
 		<div id='main' role="main">
-		  <div class='container'>
+			<div class='container'>
