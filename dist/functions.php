@@ -66,9 +66,9 @@ class VilmosIoo extends Hyperion{
 		wp_register_script( 'modernizr', THEME_PATH.'/js/vendor/modernizr/modernizr.js', array(), '2.6.2', true ); 
 		wp_register_script( 'flex', THEME_PATH.'/js/flex/jquery.flexslider-min.js', array( 'jquery' ), '1.0', true ); 
 		wp_register_style( 'flex', THEME_PATH.'/js/flex/flexslider.css' );
-		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js', array( 'default' ), '1.0', true);
-		wp_register_script( 'play', THEME_PATH.'/js/play.js', array( 'default' ), '1.0', true);
-		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js', array( 'default' ), '1.0', true);
+		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js', array(), '1.0', true);
+		wp_register_script( 'play', THEME_PATH.'/js/play.js', array(), '1.0', true);
+		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js', array(), '1.0', true);
 
 		// enqueue scripts and styles
 		wp_enqueue_script( 'modernizr' );
@@ -80,9 +80,8 @@ class VilmosIoo extends Hyperion{
 			wp_enqueue_script( 'play' ); 
 		if(get_the_title() == 'Game Of Life' ) 
 			wp_enqueue_script( 'gameoflife' ); 
-		if(get_the_title() == 'WebGL Demo' ){
-			wp_enqueue_script( 'webgl' );	
-		} 
+		if(get_the_title() == 'WebGL Demo' )
+			wp_enqueue_script( 'webgl' );
 	}
 
 	// register post types

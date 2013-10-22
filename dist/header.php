@@ -7,13 +7,11 @@
 
 	<head>
 		<meta charset="UTF-8"/>
-		<meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<link rel="apple-touch-icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicon.png"/>
 		<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicon.ico" />
 		<link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/images/favicon.png" />
-
-		<meta name="application-name" content="Hyperion Wordpress Theme" />
 		
 		<meta name="msapplication-task" 
 			content="name=Go to Archives;
@@ -76,11 +74,18 @@
 		
 		<?php wp_head(); ?>
 		
-		<script type='text/javascript'>
-			window._gaq = [['_setAccount','UA-27809256-1'],['_trackPageview'],['_trackPageLoadTime']];
-			Modernizr.load({
-				load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-			});
+		<script type='text/javascript'>	
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-27809256-1']);
+			_gaq.push(['_setDomainName', 'vilmosioo.co.uk']);
+			_gaq.push(['_trackPageview']);
+			_gaq.push(['_trackPageLoadTime']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
 		</script>
 	</head>
 	
