@@ -75,9 +75,13 @@ class VilmosIoo extends Hyperion{
 		if(is_front_page()){ 
 			wp_enqueue_script( 'flex' ); 
 			wp_enqueue_style( 'flex' ); 
-		} 
-		if(get_the_title() == 'Play' ) 
-			wp_enqueue_script( 'play' ); 
+		}
+		global $post; 
+		if(get_post_type($post->ID) == 'demo'){
+			if(get_the_title() == 'Play'){
+				wp_enqueue_script( 'play' ); 
+			}
+		}
 		if(get_the_title() == 'Game Of Life' ) 
 			wp_enqueue_script( 'gameoflife' ); 
 		if(get_the_title() == 'WebGL Demo' )
