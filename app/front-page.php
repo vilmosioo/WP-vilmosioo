@@ -30,7 +30,7 @@
 		</div>
 
 		<div id='actionbuttons'>
-			<a class='button large blue' href='<?php echo get_permalink( get_page_by_title( 'Portfolio' )->ID ); ?>'>View my portfolio</a>
+			<a class='button large blue' href='<?php echo get_post_type_archive_link('portfolio-item'); ?>'>View my portfolio</a>
 			<a class='button large orange' href='<?php echo get_permalink( get_page_by_title( 'Contact' )->ID ); ?>'>Available for freelance work</a>
 		</div>
 
