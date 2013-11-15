@@ -23,7 +23,7 @@ class VilmosIoo extends Hyperion{
 		// add image sizes
 		add_image_size( 'single', 780, 500); 
 		add_image_size( 'nivo', 1040, 300, true ); //(cropped)
-		add_image_size( 'single', 780, 500); 
+		add_image_size( 'demo', 390, 250, true); 
 
 		// final bits 
 		$this->register_post_types(); 
