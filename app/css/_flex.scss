@@ -1,0 +1,25 @@
+.flexslider-container{ position:relative; margin:50px auto; width:auto; height:auto; }
+.flexslider-container ul,.flexslider-container ol{ margin:0; padding:0; list-style:none; }
+.flexslider-container li{ margin:0; padding:0; }
+.flexslider-container img { margin:0; max-width:100%; background:transparent;}
+.flexslider img, .flexslider li, .flexslider{ -webkit-border-radius:15px !important; bordeR-radius:15px !important;}
+.flexslider img.wordpress{ position:absolute; top:20px; right:20px; width:auto; height:35%; max-height:100px;}
+.flexslider{ position: relative; background:#111; box-shadow:0 0 7px 2px #111; }
+.flexslider:before, .flexslider:after { z-index: -1; position: absolute; content: "";bottom: 15px;left: 10px;width: 50%;top: 80%;max-width:450px;background: rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);
+  -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.flexslider:after{left: auto;right: 10px;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+.flex-caption{ -webkit-border-radius:0 0 15px 15px; border-radius:0 0 15px 15px; }

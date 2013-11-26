@@ -1,0 +1,20 @@
+.single #comments {  }
+.single .commentlist, .single .commentlist ul { list-style:none; }
+.single .commentlist{ margin:0; padding:0; }
+.single .commentlist li { padding: 15px 0 0 15px; }
+.single .commentlist cite { font-style:normal; }
+.single .comment-author{ font-weight:bold; }
+.single .comment-author img { float: left; margin-right: 15px; background:#aaa; }
+.single .commentmetadata { position: absolute; right: 10px; top: 10px; }
+.single .comment{ position:relative; top:0; left:0; border-top:1px solid rgba(200,200,200,0.4); margin:0 0 15px; }
+.single .children{ margin:15px 0 0; }
+.single .comment-reply-link{ display:inline-block; padding:2px 7px; text-decoration:none; cursor:pointer; border:0; -webkit-border-radius:3px; border-radius:3px; }
+.single .cancel-comment-reply-link{ position:relative; top:-20px; left:0; }
+
+#post-navigation span{ display:inline-block; max-width:49%; }
+#respond { margin:40px 0 0; }
+
+.related li{ display:inline-block; min-height:100px; float:left; width:20%; overflow:hidden; margin: 0 10px 0 0; padding:0 10px 10px 0; }
+.related .img{ margin:0 auto 10px; width:100%; max-width:150px; height:auto; }
+.related .img img{ width:100%; height:auto; }
+ 

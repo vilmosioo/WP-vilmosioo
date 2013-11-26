@@ -1,0 +1,88 @@
+@media only screen and (max-width: 900px) {
+  #header #logo{ float:none; display:block; text-align:center;}
+  #header #logo{ float:none; display:block; text-align:center;}
+
+  #sidebar{ float:none; display:block; width:auto;}
+
+  nav, nav ul{ margin:30px auto; padding:0; float:none; display:block; text-align:center; }
+  nav li{ float:none; }
+
+  .content{ display:block; width:auto; float:none; margin:0 auto; }
+  
+  .service{ display:block; width:auto; float:none; margin:0 0 20px; }
+
+  .single .full{ height:225px; }
+  .single .full img{ width:auto; height:223px; }
+
+  .article.sticky aside img{ max-width:none; max-height:175px; }
+   
+  #main{ margin:0; }
+
+  .related li{ bordeR:none; width:40%; margin: 0 10px 10px 0; }
+  
+}
+@media only screen and (max-width: 520px) {
+  .content iframe{ width:100%; height:auto; }
+
+  #actionbuttons .button{ width:auto; display:block; margin:0 auto 10px;}
+
+.csscolumns .tumblog{ 
+  -moz-column-count: 1;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 1;
+  -webkit-column-gap: 20px;
+  column-count: 1;
+  column-gap: 20px;
+}
+.files li{ display:block; width:auto; float:none; }
+
+  .related li{ display:block; float:none; width:auto; margin: 0 0 10px 0; border:none; }
+  .related .img{ max-width:100px; float:left; margin:0 10px 10px 0; }
+
+  .portfolio-item .content, .portfolio-item aside{ width:auto; display:block; height:auto; float:none; margin:0 0 20px;}
+
+  .article aside img{ height:100px; }
+  .article.sticky aside{ border:1px solid rgb(65,180,255); }
+  .article.sticky aside:hover{ border:1px solid #fff; }
+  .article.sticky aside img{ max-width:none; height:150px; border:none; }
+  .article.sticky aside:hover img{ border:none; }
+  
+  #header #logo{ width:75%; float:left; margin:0 0 10px;}
+  #menu-button{ max-width:20%; border-radius:3px; -webkit-border-radius:3px; float:right; display: inline-block; color:#ddd; padding:5px 20px 5px 10px; margin:10px 0 0; position:relative;
+    background:#222;
+    background: -moz-linear-gradient(top, #333 0%, #111 100%); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#333), color-stop(100%,#111)); 
+    background: -o-linear-gradient(top, #333 0%, #111 100%); 
+    background: -ms-linear-gradient(top, #333 0%, #111 100%); 
+    background: linear-gradient(top, #333 0%, #111 100%); 
+  }
+  #menu-button.active{ background:#111;}
+  #menu-button:after, #menu-button::after{ position:absolute; top:5px; right:5px; content:"▼"; }
+  #menu-button.active:after, #menu-button.active::after{ content:"▲"; }
+
+  nav li{ display:block; float:none; margin:0; }
+  nav ul{ margin: 0;}
+  nav{ clear:both; display:none; float:none; box-shadow:inset 0 0 5px 1px #111; margin: 0 -2% 10px;
+    background:#222;
+background: -moz-linear-gradient(top, #333 0%, #111 100%); 
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#333), color-stop(100%,#111)); 
+    background: -o-linear-gradient(top, #333 0%, #111 100%); 
+    background: -ms-linear-gradient(top, #333 0%, #111 100%); 
+    background: linear-gradient(top, #333 0%, #111 100%); 
+    
+  }
+  nav.active{ display:block;}
+  nav a{ text-align:left; padding:4px 2%; display:block; border-bottom:1px solid #111; }
+  nav .current-menu-item a, nav a:hover{ -webkit-border-radius:0; border-radius:0; }
+  nav li:last-child:before, nav li:last-child::before{ display:none; }
+  
+  .grid-2, .grid-2-3, .grid-3-4, .grid-3, .grid-4{ display:block; width:auto; float:none; margin:0 0 20px; }
+  .single .commentmetadata{ position:static; margin:0 0 20px; }
+  .flexslider-container{ margin-top: 20px; }
+}
+
+/******PRINT STYLES*********/
+
+@media print{
+  *{background:transparent!important;color:#000!important;text-shadow:none!important;filter:none!important;-ms-filter:none!important}a{text-decoration:underline}a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href) ")"}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after{content:""}a[href^="javascript:"]:after{content:""}a[href^="#"]:after{content:""}pre{border:1pxcurrent- solid #999;page-break-inside:avoid}blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr{page-break-inside:avoid}img{page-break-inside:avoid;max-width:100%!important}@page{margin:.5cm}p{orphans:3;widows:3}h2{orphans:3;widows:3;page-break-after:avoid}h3{orphans:3;widows:3;page-break-after:avoid}
+}

@@ -1,0 +1,15 @@
+footer{ font-size:90%; width:100%; margin:40px 0 0; padding:20px 0; background:#111; border-top:3px solid #156DA6; 
+  background: -moz-linear-gradient(top, #222 0%, #000 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222), color-stop(100%,#000)); /* Chrome */
+  background: -o-linear-gradient(top, #222 0%, #000 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #222 0%, #000 100%); /* IE10+ */
+  background: linear-gradient(top, #222 0%, #000 100%); /* W3C */
+}
+footer .widget_recent_entries ul{ margin:0; padding:0; list-style:none;}
+footer .widget_recent_entries ul li{ border-bottom:1px solid rgba(200,200,200,0.25); padding:0 10px 10px 10px; margin:10px 0;}
+footer .widget_recent_entries ul .img{ display:block; height:80px; margin:0 0 10px 0;}
+footer .menu{ list-style:none; margin:0; padding:0;}
+footer .menu li{ float:left; margin:0 10px 0 0; padding:0;}
+
+footer #twitter_update_list{ margin:0; padding:0; list-style:none; }
+footer #twitter_update_list li{ margin:0 0 15px 0; }
