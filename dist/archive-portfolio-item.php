@@ -29,7 +29,7 @@ get_header();
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<h2><?php the_title(); ?></h2>
 		<?php
-			echo "<aside><a target='_blank' title='".get_the_title()."' rel='lightbox' href='".$href[0]."' class='img'>"; 
+			echo "<aside><a title='".get_the_title()."' rel='lightbox' href='".$href[0]."' class='img'>"; 
 			the_post_thumbnail('nivo');
 			echo "</a></aside>";
 		?>
