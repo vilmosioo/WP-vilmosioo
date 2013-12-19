@@ -9,7 +9,8 @@ get_header();
 		<header>
 			<h1><?php the_title(); ?></h1>
 		</header>
-		<?php the_content();?>
+		<?php the_content(); ?>
+		<?php if(get_the_title() == 'Tumbleblog') get_template_part('tumbleblog'); ?>
 	<?php endwhile; ?>
 </section>
 <?php get_footer(); ?>
