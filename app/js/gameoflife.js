@@ -197,12 +197,8 @@ function init(test){
 window.onload = function(){
 	canvas = document.getElementById('canvas-gol');
 	context = canvas.getContext('2d');
-	width = 778;
+	width = 1000;
 	height = Math.floor(width*666/1000);
-	canvas.width = width;
-	canvas.height = height;
-	canvas.style.width = width;
-	canvas.style.height = height;
 	var maxwidth = document.body.clientWidth - 20;
 	if(maxwidth < width){
 		width = maxwidth;
