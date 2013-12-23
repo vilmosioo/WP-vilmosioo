@@ -27,6 +27,31 @@
   transform: rotate(3deg);
 }
 
+.archive .project{ margin:20px 0 60px; padding:0 0 40px; border-bottom:1px solid rgba(200,200,200,0.5); position:relative; top:0; left:0; }
+.archive .project:last-child{ border-bottom:none; }
+.archive .project aside{ height:auto; margin:0 0 20px 0;}
+.archive .project .img{ -webkit-border-radius:15px; border-radius:15px; box-shadow:0 0 7px 1px #111; position:relative; top:0; left:0; display:block; }
+
+.archive .project .img img{ width:100%; height:auto; border:1px solid #000; -webkit-border-radius:15px; border-radius:15px; }
+.archive .project .img img:hover { border:1px solid #ddd; }
+.archive .project .img:before, .archive .project .img:after { z-index: -1; position: absolute; content: "";bottom: 15px;left: 10px;width: 50%;top: 80%;max-width:450px;background: rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);
+  -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.archive .project .img:after{left: auto;right: 10px;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+
 .article h2{ font-size:1.625em;}
 .article{ margin:0 0 30px; padding-bottom:30px; border:0; border-bottom:1px solid rgba(200,200,200,0.2); }
 .article aside{ float:right; width:auto; height:auto; margin:0 0 20px 20px; overflow:hidden;}
