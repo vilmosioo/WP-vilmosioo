@@ -1,4 +1,4 @@
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
   #header #logo{ float:none; display:block; text-align:center;}
   #header #logo{ float:none; display:block; text-align:center;}
 
@@ -10,9 +10,6 @@
   .content{ display:block; width:auto; float:none; margin:0 auto; }
   
   .service{ display:block; width:auto; float:none; margin:0 0 20px; }
-
-  .single .full{ height:225px; }
-  .single .full img{ width:auto; height:223px; }
 
   .article.sticky aside img{ max-width:none; max-height:175px; }
    
