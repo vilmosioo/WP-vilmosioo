@@ -31,15 +31,15 @@ module.exports = function(grunt) {
 		watch: {
 			general: {
 				files: ['<%= config.app %>/**/*.html', '<%= config.app %>/**/*.php'],
-				tasks: ['copy']
+				tasks: ['newer:copy']
 			},
 			js: {
 				files: ['<%= config.app %>/js/**/*.js'],
-				tasks: ['uglify']
+				tasks: ['newer:uglify']
 			},
 			sass: {
 				files: ['<%= config.app %>/**/*.scss'],
-				tasks: ['compass', 'cssmin']
+				tasks: ['newer:compass', 'newer:cssmin']
 			}
 		},
 		compass: {
