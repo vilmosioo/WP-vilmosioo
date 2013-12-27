@@ -19,7 +19,8 @@ class VilmosIoo extends Hyperion{
 		add_action( 'login_enqueue_scripts', array( &$this, 'login_styles'));
 		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_styles'));
 		add_filter( 'admin_footer_text', array( &$this, 'remove_footer_admin'));
-		
+		add_filter('widget_text', 'do_shortcode');
+
 		// add image sizes
 		add_image_size( 'single', 780, 500); 
 		add_image_size( 'nivo', 1040, 300, true ); //(cropped)
@@ -47,7 +48,7 @@ class VilmosIoo extends Hyperion{
 	// Customise the footer in admin area
 	function remove_footer_admin () {
 		echo get_avatar('cool.villi@gmail.com' , '40' );
-		echo 'Theme designed and developed by <a href="http://vilmosioo.co.uk" target="_blank">Vilmos Ioo</a> and powered by <a href="http://wordpress.org" target="_blank">WordPress</a>.';
+		echo 'Theme designed and developed by <a href="http://vilmosioo.co.uk" target="_blank">Vilmos Ioo</a> and powered by <a href="http://wordpress.org" target="_blank">WordPress</a>. Version v@@version';
 	}
 	
 	// add custom admin styles

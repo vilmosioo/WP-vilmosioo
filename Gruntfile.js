@@ -122,6 +122,19 @@ module.exports = function(grunt) {
 			files: [
 				'app/**/*'
 			]
+		},
+		replace: {
+			options: {
+				variables: {
+					'version': pkg.version || '0.0.1'
+				}
+			},
+			files: {
+				expand: true,
+				cwd: '<%= config.dist %>',
+				src: '**/*',
+				dest: '<%= config.dist %>'
+			}
 		}
 	});
 
@@ -132,7 +145,8 @@ module.exports = function(grunt) {
 		'cssmin', // minify all css files from app folder and move them to dist folder
 		'uglify', // uglify all JS files from app folder and move them to in the dist folder
 		'copy', // copy rest of files from app folder to dist (php ,html, txt, ico, fonts) and copy components in dist
-		'modernizr' // parse mdoernizr and copy only necessary tests
+		'modernizr', // parse mdoernizr and copy only necessary tests
+		'replace' // replaces and inserts the theme version
 	]);
 
 	grunt.registerTask('server', [
