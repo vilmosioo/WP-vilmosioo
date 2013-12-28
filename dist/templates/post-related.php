@@ -4,6 +4,7 @@ Template to display related posts.
 */
 $categories = get_the_category($id);
 $tags = get_the_tags($id);
+
 if ($categories || $tags) {
 	$category_ids = array();
 	if($categories) foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
