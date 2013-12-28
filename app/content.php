@@ -13,7 +13,7 @@
 	<header class="entry-header">
 		<?php if ( is_singular() ) : ?>
 			<h1 class="entry-title"><?php the_title(); ?></h1>
-		<?php if ( is_single() ) Utils::post_meta(); ?>
+		<?php if ( is_single() ) get_template_part( 'templates/post', 'meta' ); ?>
 		<?php else : ?>
 			<h2 class="entry-title">
 				<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
@@ -30,9 +30,9 @@
 	<div class="entry-content">
 		<?php the_content(); ?>
 		<?php if( is_single() ) : ?>
-			<?php Utils::post_attachments('Screenshots', 'screenshot cutout')?>
-			<?php Utils::post_navigation()?>
-			<?php Utils::related_posts($post->ID); ?>
+			<?php get_template_part( 'templates/post', 'attachments' ); ?>
+			<?php get_template_part( 'templates/post', 'navigation' ); ?>
+			<?php get_template_part( 'templates/post', 'related' ); ?>
 			<?php get_template_part( 'templates/author-bio' ); ?>
 			<?php comments_template(); ?>
 		<?php endif; // end single ?>	
