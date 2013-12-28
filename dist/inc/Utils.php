@@ -5,6 +5,30 @@
 *   Utils::post_thumbnail('full', 'class'); 
 */
 class Utils{
+	/* 
+	* Check the current post for the existence of a short code 
+	*/
+	static function has_shortcode($shortcode = '') {
+		
+		$post_to_check = get_post(get_the_ID());
+		
+		// false because we have to search through the post content first
+		$found = false;
+		
+		// if no short code was provided, return false
+		if (!$shortcode) {
+			return $found;
+		}
+		// check the post content for the short code
+		if ( stripos($post_to_check->post_content, '[' . $shortcode) !== false ) {
+			// we have found the short code
+			$found = true;
+		}
+		
+		// return our final results
+		return $found;
+	}
+
 	/*
 	* Return details about the last JSON error
 	*/
@@ -39,7 +63,7 @@ class Utils{
 	*/
 
 	static function generate_slug($s = ""){
-	return strtolower(str_replace(" ", "-", $s));
+		return strtolower(str_replace(" ", "-", $s));
 	}
 
 	/* 
@@ -48,9 +72,9 @@ class Utils{
 	* This function will print out a nicely formatted array
 	*/
 	static function print_pre($s = "") {
-	echo '<pre>';
-	print_r( $s );
-	echo '</pre>';
+		echo '<pre>';
+		print_r( $s );
+		echo '</pre>';
 	}
 
 	/* 
@@ -59,37 +83,86 @@ class Utils{
 	* If found, the function will retur the post thumbnail, 
 	* else it will return the first image attached to the post
 	*/
-	static function post_thumbnail($full = 'thumbnail', $class = ''){
-	if ( has_post_thumbnail() ) { 
-		echo "<aside><a href='".get_permalink()."' class='$class' title='".get_the_title()."' rel='canonical'>";
-		the_post_thumbnail($full);
-		echo "</a></aside>";
-	} else {
-		$attachments = get_posts( array(
-		'post_type' => 'attachment',
-		'numberposts'     => 1,
-		'post_parent' => get_the_ID(),
-		'exclude'     => get_post_thumbnail_id()
-		) );
+	static function post_thumbnail($size = 'thumbnail', $class = ''){
+		if ( has_post_thumbnail() ) { 
+			echo "<aside class='entry-thumbnail'><a href='".get_permalink()."' class='$class' title='".get_the_title()."' rel='canonical'>";
+			the_post_thumbnail($size);
+			echo "</a></aside>";
+		} else {
+			$attachments = get_posts( array(
+				'post_type' => 'attachment',
+				'numberposts'     => 1,
+				'post_parent' => get_the_ID(),
+				'exclude'     => get_post_thumbnail_id()
+			) );
 
-		if ( $attachments ) {
-		foreach ( $attachments as $attachment ) {
-			$href = wp_get_attachment_image_src( $attachment->ID, $full);
-		}
-		echo "<aside><a class='default $class' href='".get_permalink()."' title='".get_the_title()."' rel='canonical'>";
-		echo "<img src='".$href[0]."' alt='".get_the_title()."'/>"; 
-		echo "</a></aside>";
+			if ( $attachments ) {
+				foreach ( $attachments as $attachment ) {
+					$href = wp_get_attachment_image_src( $attachment->ID, $size);
+				}
+				echo "<aside class='entry-thumbnail'><a class='default $class' href='".get_permalink()."' title='".get_the_title()."' rel='canonical'>";
+				echo "<img src='".$href[0]."' alt='".get_the_title()."'/>"; 
+				echo "</a></aside>";
+			}
 		}
 	}
+
+	/* 
+	* Prints out the current post metadata
+	* 
+	*/
+	static function post_meta(){
+		?>
+		<aside class='aside meta'>
+			Posted on <?php the_time(get_option('date_format')); ?> in <?php the_category(', '); ?> <?php the_tags(' &#8226; Talking about ', ', '); ?> &#8226; <a href='#comments'><?php comments_number('No Comments :(', 'One Comment', '% Comments' ); ?></a> &#8226; <a title="Permalink to <?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>">Permalink</a> 
+		</aside>
+		<?php
+	}
+
+	/* 
+	* Prints out the current post attachments. 
+	* Works similarly to the gallery shortcode but simpler structure, and it allows for custom classes to be added.
+	* 
+	*/
+	static function post_attachments($title = '', $class = ''){
+		$attachments = get_posts(array(	
+			'post_type' => 'attachment',
+			'numberposts'     => -1,
+			'post_parent' => get_the_ID()
+		));
+		
+		if ( $attachments ) {
+			echo "<h3>$title</h3>";
+			foreach ( $attachments as $attachment ) {
+				$href = wp_get_attachment_image_src( $attachment->ID, 'thumbnail'); 
+				$full = wp_get_attachment_image_src( $attachment->ID, 'full');
+				echo "<a class='$class' href='".$full[0]."' target=\"_blank\" rel=\"lightbox\">";
+				echo "<img src='".$href[0]."' alt='".get_the_title()."'/>"; 
+				echo "</a>";
+			}
+			echo '<div class="clear"></div>';
+		}
+	}
+
+	/*
+	* Prints out the single post navigation.
+	*/
+	static function post_navigation(){
+		?>
+		<aside class='aside clearfix' id='post-navigation'>
+			<span class='fleft'><?php previous_post_link(); ?></span> 
+			<span class='fright'><?php next_post_link(); ?></span> 
+		</aside>
+		<?php
 	}
 
 	/* 
 	* Get a custom length excerpt
 	*/
 	static function custom_excerpt($s, $length){
-	$temp = substr(strip_tags($s), 0, $length);
-	if(strlen(strip_tags( $s ) ) > $length) $temp .= "&#0133;";
-	return $temp; 
+		$temp = substr(strip_tags($s), 0, $length);
+		if(strlen(strip_tags( $s ) ) > $length) $temp .= "&#0133;";
+		return $temp; 
 	}
 
 	/*
@@ -98,48 +171,48 @@ class Utils{
 	* @param id : the id of the post
 	*/
 	static function related_posts($id){
-	$categories = get_the_category($id);
-	$tags = get_the_tags($id);
-	if ($categories || $tags) {
-		$category_ids = array();
-		if($categories) foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
-	 
-		$tag_ids = array();
-		if($tags) foreach($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
-	 
-		$args=array(
-		'tax_query' => array(
-			'relation' => 'OR',
-			array(
-			'taxonomy' => 'category',
-			'field' => 'id',
-			'terms' => $category_ids
-			),
-			array(
-			'taxonomy' => 'post_tag',
-			'field' => 'id',
-			'terms' => $tag_ids
-			)
-		),
-		'post__not_in' => array($post->ID),
-		'posts_per_page'=> 4, // Number of related posts that will be shown.
-		);
-	 
-		$my_query = new WP_Query( $args );
-		if( $my_query->have_posts() ) {
-		echo "<h3>Related posts</h3><ul class='list related'>";
-		while( $my_query->have_posts() ) {
-			$my_query->the_post(); ?>
-			<li>
-			<?php Utils::post_thumbnail('thumbnail', 'cutout'); ?>
-			<a href='<?php the_permalink(); ?>' rel='canonical'><?php the_title();?></a>
-			</li>
-			<?php
+		$categories = get_the_category($id);
+		$tags = get_the_tags($id);
+		if ($categories || $tags) {
+			$category_ids = array();
+			if($categories) foreach($categories as $individual_category) $category_ids[] = $individual_category->term_id;
+		 
+			$tag_ids = array();
+			if($tags) foreach($tags as $individual_tag) $tag_ids[] = $individual_tag->term_id;
+		 
+			$args=array(
+				'tax_query' => array(
+					'relation' => 'OR',
+					array(
+						'taxonomy' => 'category',
+						'field' => 'id',
+						'terms' => $category_ids
+					),
+					array(
+						'taxonomy' => 'post_tag',
+						'field' => 'id',
+						'terms' => $tag_ids
+					)
+				),
+				'post__not_in' => array($post->ID),
+				'posts_per_page'=> 4, // Number of related posts that will be shown.
+			);
+		 
+			$my_query = new WP_Query( $args );
+			if( $my_query->have_posts() ) {
+			echo "<h3>Related posts</h3><ul class='list related'>";
+			while( $my_query->have_posts() ) {
+				$my_query->the_post(); ?>
+				<li>
+				<?php Utils::post_thumbnail('thumbnail', 'cutout'); ?>
+				<a href='<?php the_permalink(); ?>' rel='canonical'><?php the_title();?></a>
+				</li>
+				<?php
+			}
+			echo "</ul><div class='clear'></div>";
+			}
 		}
-		echo "</ul><div class='clear'></div>";
-		}
-	}
-	wp_reset_postdata();
+		wp_reset_postdata();
 	} 
 
 	/*
