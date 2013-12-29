@@ -48,7 +48,7 @@ class VilmosIoo extends Hyperion{
 	// Customise the footer in admin area
 	function remove_footer_admin () {
 		echo get_avatar('cool.villi@gmail.com' , '40' );
-		echo 'Theme designed and developed by <a href="http://vilmosioo.co.uk" target="_blank">Vilmos Ioo</a> and powered by <a href="http://wordpress.org" target="_blank">WordPress</a>. Version v1.3.1';
+		echo 'Theme designed and developed by <a href="http://vilmosioo.co.uk" target="_blank">Vilmos Ioo</a> and powered by <a href="http://wordpress.org" target="_blank">WordPress</a>. Version v1.3.2';
 	}
 	
 	// add custom admin styles
