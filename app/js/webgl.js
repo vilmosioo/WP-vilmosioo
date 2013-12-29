@@ -71,6 +71,8 @@ var APP = (function (app, $) {
 		// get the DOM element to attach to
 		// - assume we've got jQuery to hand
 		var $container = $('#webgl');
+		var img = $container.attr('data-src');
+
 		// set the scene size
 		var WIDTH = $container.width(),
 			HEIGHT = $container.height();
@@ -103,7 +105,7 @@ var APP = (function (app, $) {
 		$container.append(renderer.domElement);
 
 		// create the sphere's material
-		var sphereMaterial = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture("http://dev.vilmosioo.co.uk/wp-content/themes/vilmosioo1.1/js/map.jpg") });
+		var sphereMaterial = new THREE.MeshLambertMaterial({ map: THREE.ImageUtils.loadTexture(img) });
 		var radius = 100, segments = 64, rings = 64;
 		sphere = new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, rings),

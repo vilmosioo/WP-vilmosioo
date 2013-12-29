@@ -48,7 +48,7 @@ class VilmosIoo extends Hyperion{
 	// Customise the footer in admin area
 	function remove_footer_admin () {
 		echo get_avatar('cool.villi@gmail.com' , '40' );
-		echo 'Theme designed and developed by <a href="http://vilmosioo.co.uk" target="_blank">Vilmos Ioo</a> and powered by <a href="http://wordpress.org" target="_blank">WordPress</a>. Version v1.3.2';
+		echo 'Theme designed and developed by <a href="http://vilmosioo.co.uk" target="_blank">Vilmos Ioo</a> and powered by <a href="http://wordpress.org" target="_blank">WordPress</a>. Version v1.3.3';
 	}
 	
 	// add custom admin styles
@@ -64,13 +64,13 @@ class VilmosIoo extends Hyperion{
 	// add additional scripts and styles
 	function add_scripts_and_styles(){
 		// register scripts and styles
-		wp_register_script( 'default', THEME_PATH.'/js/script.js', array(), '1.0', true ); 
+		wp_register_script( 'default', THEME_PATH.'/js/script.js', array(), '1.3.3', true ); 
 		wp_register_script( 'modernizr', THEME_PATH.'/js/vendor/modernizr/modernizr.js', array(), '2.6.2', true ); 
-		wp_register_script( 'flex', THEME_PATH.'/js/flex/jquery.flexslider-min.js', array( 'jquery' ), '1.0', true ); 
+		wp_register_script( 'flex', THEME_PATH.'/js/flex/jquery.flexslider-min.js', array( 'jquery' ), '1.3.3', true ); 
 		wp_register_style( 'flex', THEME_PATH.'/js/flex/flexslider.css' );
-		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js', array('default'), '1.0', true);
-		wp_register_script( 'play', THEME_PATH.'/js/play.js', array('default'), '1.0', true);
-		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js', array('default'), '1.0', true);
+		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js', array('default'), '1.3.3', true);
+		wp_register_script( 'play', THEME_PATH.'/js/play.js', array('default'), '1.3.3', true);
+		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js', array('default'), '1.3.3', true);
 
 		// enqueue scripts and styles
 		wp_enqueue_script( 'modernizr' );
