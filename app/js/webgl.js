@@ -89,7 +89,7 @@ var APP = (function (app, $) {
 		scene = new THREE.Scene();
 		// the camera starts at 0,0,0 so pull it back
 		camera.position.set(0,400,1000);
-		controls = new THREE.TrackballControls( camera );
+		controls = new THREE.TrackballControls( camera, $container[0] );
 		controls.rotateSpeed = 2.0;
 		controls.zoomSpeed = 2.4;
 		controls.panSpeed = 1.6;
