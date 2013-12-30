@@ -39,14 +39,7 @@ get_header();
 			<?php if( $url[0] != '' ) echo "<a class='button blue' href='".$url[0]."'>Visit site</a>"; ?>
 		</div>
 		<div class='grid-2'>
-			<h3>What I did</h3>
-			<ol class='rectangle-list'>
-			<?php 
-				foreach($custom_fields['features'] as $feature){
-					echo "<li><a>$feature</a></li>";
-				}
-			?>
-			</ol>
+			<?php get_template_part('templates/post', 'features'); ?>
 		</div>
 		<div class='clear'></div>
 	</article>

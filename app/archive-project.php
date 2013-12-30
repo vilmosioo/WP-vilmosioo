@@ -23,14 +23,7 @@ get_header();
 			<?php the_excerpt(); ?>
 		</div>
 		<div class='grid-2'>
-			<h3>What I did</h3>
-			<ol class='rectangle-list'>
-			<?php
-				foreach(get_the_terms(get_the_ID(), 'features') as $feature){
-					echo "<li><a>".$feature->name."</a></li>";
-				}
-			?>
-			</ol>
+			<?php get_template_part('templates/post', 'features'); ?>
 		</div>
 		<div class='clear'></div>
 	</article>
