@@ -52,8 +52,7 @@ class VilmosIoo extends Hyperion{
 		// enqueue scripts and styles
 		wp_enqueue_script( 'modernizr' );
 		
-		global $post; 
-		if(get_post_type($post->ID) == 'project'){
+		if(is_singular('project')){
 			if(get_the_title() == 'WebGL Demo' ) wp_enqueue_script( 'webgl' );
 		}
 	}
