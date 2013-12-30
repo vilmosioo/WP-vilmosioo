@@ -1,4 +1,5 @@
 <?php
+require_once 'inc/Utils.php';
 require_once 'inc/Hyperion.php';
 
 class VilmosIoo extends Hyperion{	
