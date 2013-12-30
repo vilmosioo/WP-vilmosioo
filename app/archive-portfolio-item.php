@@ -11,8 +11,6 @@ get_header();
 	
 	<?php  
 	if ( have_posts() ) while ( have_posts() ) : the_post(); 
-		$custom_fields = get_post_custom();
-		$url = $custom_fields['url'];
 		$attachments = get_posts( array(
 			'post_type' => 'attachment',
 			'numberposts'     => 1,
@@ -36,7 +34,6 @@ get_header();
 		<div class='grid-2'>
 			<h3>Description</h3>
 			<?php the_content(); ?>
-			<?php if( $url[0] != '' ) echo "<a class='button blue' href='".$url[0]."'>Visit site</a>"; ?>
 		</div>
 		<div class='grid-2'>
 			<?php get_template_part('templates/post', 'features'); ?>
