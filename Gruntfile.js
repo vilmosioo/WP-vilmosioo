@@ -71,7 +71,6 @@ module.exports = function(grunt) {
 				files: {
 					'<%= config.dist %>/js/play.js': '<%= config.app %>/js/play.js',
 					'<%= config.dist %>/js/gameoflife.js': '<%= config.app %>/js/gameoflife.js',
-					'<%= config.dist %>/js/script.js': '<%= config.app %>/js/script.js',
 					'<%= config.dist %>/js/webgl.js': [
 						'components/threejs/build/three.min.js',
 						'components/threejs/examples/js/controls/TrackballControls.js',
@@ -79,11 +78,13 @@ module.exports = function(grunt) {
 					]
 				}
 			},
-			flex: {
-				expand: true,
-				cwd: '<%= config.app %>',
-				src: 'js/flex/**/*.js',
-				dest: '<%= config.dist %>'
+			combine: {
+				files: {
+					'<%= config.dist %>/js/script.js': [
+						'<%= config.app %>/js/script.js',
+						'.tmp/js/modernizr.js'
+					]
+				}
 			}
 		},
 		copy: {
@@ -118,7 +119,7 @@ module.exports = function(grunt) {
 		},
 		modernizr: {
 			devFile: "components/modernizr/modernizr.js",
-			outputFile: "<%= config.dist %>/js/vendor/modernizr/modernizr.js",
+			outputFile: ".tmp/js/modernizr.js",
 			files: [
 				'app/**/*'
 			]
@@ -143,9 +144,9 @@ module.exports = function(grunt) {
 		'jshint', // validate all js files
 		'compass', // process all scss file and dump result in .tmp
 		'cssmin', // minify all css files from app folder and move them to dist folder
+		'modernizr', // parse mdoernizr and copy only necessary tests
 		'uglify', // uglify all JS files from app folder and move them to in the dist folder
 		'copy', // copy rest of files from app folder to dist (php ,html, txt, ico, fonts) and copy components in dist
-		'modernizr', // parse mdoernizr and copy only necessary tests
 		'replace' // replaces and inserts the theme version
 	]);
 
