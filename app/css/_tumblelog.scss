@@ -1,10 +1,10 @@
-.tumblog-item{ padding:0 1% 1%; margin:0 0 20px; min-height:50px; border-bottom:1px solid rgba(200,200,200,0.5); position:relative; }
-.tumblog-item .icon{ float:left; width:50px; height:50px; padding:0; margin:0 8px 10px 0; }
-.tumblog-item blockquote{ margin:10px 0;  }
-.tumblog-item img{ float:left; margin:0 10px 10px 0; max-width:250px; max-height:250px; }
-.tumblog-item.comic img{ float:none; max-width:100%; max-height:none; }
+.tumblelog-item{ padding:0 1% 1%; margin:0 0 20px; min-height:50px; border-bottom:1px solid rgba(200,200,200,0.5); position:relative; }
+.tumblelog-item .icon{ float:left; width:50px; height:50px; padding:0; margin:0 8px 10px 0; }
+.tumblelog-item blockquote{ margin:10px 0;  }
+.tumblelog-item img{ float:left; margin:0 10px 10px 0; max-width:250px; max-height:250px; }
+.tumblelog-item.comic img{ float:none; max-width:100%; max-height:none; }
 
-.csscolumns .tumblog{ 
+.csscolumns .tumblelog{ 
   -moz-column-count: 3;
   -moz-column-gap: 20px;
   -webkit-column-count: 3;
@@ -12,7 +12,7 @@
   column-count: 3;
   column-gap: 20px;
 }
-.csscolumns .tumblog-item{
+.csscolumns .tumblelog-item{
   display: inline-block; /* Display inline-block, and absolutely NO FLOATS! */
   margin-bottom: 20px;
   padding:5%;
@@ -24,9 +24,9 @@
   border-radius:10px;
   color:#111;
 }
-.csscolumns .tumblog-item:nth-child(odd){ background:rgba(99,99,99,0.5); background:#fff; ;}
-.csscolumns .tumblog-item h3, .csscolumns .tumblog-item a, .csscolumns .tumblog-item blockquote{ color:#111; text-shadow:none; }
-.csscolumns .tumblog-item img{ max-width:90%; max-height:none; }
+.csscolumns .tumblelog-item:nth-child(odd){ background:rgba(99,99,99,0.5); background:#fff; ;}
+.csscolumns .tumblelog-item h3, .csscolumns .tumblelog-item a, .csscolumns .tumblelog-item blockquote{ color:#111; text-shadow:none; }
+.csscolumns .tumblelog-item img{ max-width:90%; max-height:none; }
 
 .reading-list-item{ background:#333; padding:20px; border-radius:10px; margin: 0 0 50px; }
 .reading-list-item .title{ font-size:50px; padding-bottom:50px; border-bottom:1px solid white;}

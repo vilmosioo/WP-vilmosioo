@@ -19,7 +19,6 @@ get_header();
 			if(!empty($demo) && !empty($demo[0])) echo "<a href='$demo[0]' class='button large orange'>Demo</a>";
 			echo '</div>';
 		?>
-		<?php if(get_the_title() == 'Tumbleblog') get_template_part('tumbleblog'); ?>		
 	<?php endwhile; ?>
 </section>
 <?php get_footer(); ?>
