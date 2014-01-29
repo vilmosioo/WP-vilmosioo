@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 			},
 			sass: {
 				files: ['<%= config.app %>/**/*.scss'],
-				tasks: ['newer:compass', 'newer:cssmin', 'newer:replace']
+				tasks: ['compass', 'newer:cssmin', 'newer:replace']
 			}
 		},
 		compass: {

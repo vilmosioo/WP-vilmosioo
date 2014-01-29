@@ -1,34 +1,18 @@
-.feeds .tumblelog-item{ padding:0 1% 1%; margin:0 0 20px; min-height:50px; border-bottom:1px solid rgba(200,200,200,0.5); position:relative; }
-.feeds .tumblelog-item .icon{ float:left; width:50px; height:50px; padding:0; margin:0 8px 10px 0; }
-.feeds .tumblelog-item blockquote{ margin:10px 0;  }
-.feeds .tumblelog-item img{ float:left; margin:0 10px 10px 0; max-width:250px; max-height:250px; }
-.feeds .tumblelog-item.comic img{ float:none; max-width:100%; max-height:none; }
+.feeds .tumblelog-item{ margin:0 0 20px; border:1px solid rgba(200,200,200,0.5); position:relative; }
+.feeds .tumblelog-item .tumblelog-item-icon{ position:absolute; top:15px; left:20px; background:url('images/icons/rss.png') no-repeat; display:inline-block; padding:0 0 0 60px; height:60px; font-weight:bold; line-height:50px; width:50px; height:50px; padding:0; margin:0 8px 10px 0; }
+.feeds .tumblelog-item img{ margin:0; max-width:250px; max-height:250px; }
 
-.csscolumns .feeds{ 
-  -moz-column-count: 3;
-  -moz-column-gap: 20px;
-  -webkit-column-count: 3;
-  -webkit-column-gap: 20px;
-  column-count: 3;
-  column-gap: 20px;
-}
-.csscolumns .feeds .tumblelog-item{
-  display: inline-block; /* Display inline-block, and absolutely NO FLOATS! */
-  margin-bottom: 20px;
-  padding:5%;
-  width: 90%;
-  border-bottom:none;
-  background:rgba(66,66,66,0.5); 
-  background:rgb(165,225,255); 
-  -webkit-border-radius:10px; 
-  border-radius:10px;
-  color:#111;
-}
-.csscolumns .feeds .tumblelog-item:nth-child(odd){ background:rgba(99,99,99,0.5); background:#fff; ;}
-.csscolumns .feeds .tumblelog-item h3, .csscolumns .feeds .tumblelog-item a, .csscolumns .feeds .tumblelog-item blockquote{ color:#111; text-shadow:none; }
-.csscolumns .feeds .tumblelog-item img{ max-width:90%; max-height:none; }
+.feeds .tumblelog-item[data-url*='facebook'] .tumblelog-item-icon{ background:url('images/icons/facebook.png') no-repeat; }
+.feeds .tumblelog-item[data-url*='twitter'] .tumblelog-item-icon{ background:url('images/icons/twitter.png') no-repeat; }
+.feeds .tumblelog-item[data-url*='linkedin'] .tumblelog-item-icon{ background:url('images/icons/linkedin.png') no-repeat; }
+.feeds .tumblelog-item[data-url*='youtube'] .tumblelog-item-icon{ background:url('images/icons/youtube.png') no-repeat; }
+.feeds .tumblelog-item[data-url*='wordpress'] .tumblelog-item-icon{ background:url('images/icons/wordpress.png') no-repeat; }
+.feeds .tumblelog-item[data-url*='github'] .tumblelog-item-icon{ background:url('images/icons/github.png') no-repeat; }
+.feeds .tumblelog-item[data-url*='pinterest'] .tumblelog-item-icon{ background:url('images/icons/pinterest.png') no-repeat; }
+.feeds .tumblelog-item[data-url*='goodreads'] .tumblelog-item-icon{ background:url('images/icons/goodreads.png') no-repeat; }
 
-.reading-list-item{ background:#333; padding:20px; border-radius:10px; margin: 0 0 50px; }
-.reading-list-item .title{ font-size:50px; padding-bottom:50px; border-bottom:1px solid white;}
-.reading-list-item p, .reading-list-item strong{ }
-.reading-list-item h1, .reading-list-item h2, .reading-list-item h3, .reading-list-item h4, .reading-list-item h5, .reading-list-item h6{ }
+.feeds .tumblelog-item{
+  padding:15px 20px 15px 90px; background:#eee; -webkit-border-radius:3px; border-radius:3px; color:#111;
+}
+.feeds .tumblelog-item:nth-child(odd){ background:#fff; ;}
+.feeds .tumblelog-item h3, .feeds .tumblelog-item a, .feeds .tumblelog-item blockquote{ color:#111; text-shadow:none; }
