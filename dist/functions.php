@@ -43,7 +43,7 @@ class VilmosIoo extends Hyperion{
 	// add additional scripts and styles
 	function add_scripts_and_styles(){
 		// register scripts and styles
-		wp_register_script( 'default', THEME_PATH.'/js/script.js', array(), '1.3.11', true ); 
+		wp_register_script( 'default', THEME_PATH.'/js/script.js', array('jquery'), '1.3.11', true ); 
 		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js', array('default'), '1.3.11', true);
 		wp_register_script( 'play', THEME_PATH.'/js/play.js', array('default'), '1.3.11', true);
 		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js', array('default'), '1.3.11', true);
@@ -53,6 +53,7 @@ class VilmosIoo extends Hyperion{
 		
 		if(is_singular('project')){
 			if(get_the_title() == 'WebGL Demo' ) wp_enqueue_script( 'webgl' );
+			if(get_the_title() == 'Game Of Life' ) wp_enqueue_script( 'gameoflife' );
 		}
 	}
 
