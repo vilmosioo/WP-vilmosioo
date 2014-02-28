@@ -1,1 +1,289 @@
-/*! VilmosIoo - v1.3.11 */"use strict";var VI_GOL=function(a,b){var c,d,e,f={},g=125,h=Math.floor(666*g/1e3),i=!1,j=1e3,k=Math.floor(666*j/1e3),l=new Array(g*h),m=new Array(g*h),n=function(){c=document.getElementById("canvas-gol"),d=c.getContext("2d"),j=Math.min(j,b.body.clientWidth-20),k=Math.floor(666*j/1e3),c.width=j,c.height=k,c.style.width=j+"px",c.style.height=k+"px",e={glidergun:{$el:a("#glidergun"),pattern:"........................Ox......................O.Ox............OO......OO............OOx...........O...O....OO............OOxOO........O.....O...OOxOO........O...O.OO....O.Ox..........O.....O.......Ox...........O...Ox............OO"},ship:{$el:a("#ship"),pattern:"...Ox.O...OxOxO....OxOOOOO"},glider:{$el:a("#glider"),pattern:".Ox..OxOOO"},noah:{$el:a("#noah"),pattern:"..........O.Ox.........Ox..........O..Ox............OOOxxxxxx.OxO.OxxO..Ox..OOx...O"},space:{$el:a("#space"),pattern:"...........OO.....OOOOx.........OO.OO...O...Ox.........OOOO........Ox..........OO.....O..Oxx........Ox.......OO........OOx......O.........O..Ox.......OOOOO....O..Ox........OOOO...OO.OOx...........O....OOxxxx..................OOOOxO..O.............O...Ox....O................OxO...O............O..Ox.OOOO"},pentomino:{$el:a("#pentomino"),pattern:".OOxOOx.O"},$all:a("#glider, #noah, #ship, #space, #glidergun, #pentomino")}},o=function(){window.location=c.toDataURL("image/png")},p=function(){a(this).text(i?"Run":"Pause"),i=!i},q=function(){var b=a(this);e.$all.removeClass("active");for(var c in e)if(e.hasOwnProperty(c)&&e[c].$el.is(b))return void C(e[c])},r=function(){a("#save").click(o),a("#run").click(p);for(var b in e)e.hasOwnProperty(b)&&e[b].$el&&e[b].$el.click(q)},s=function(){var a=d.createRadialGradient(j/2,j/2,100,j/2,j/2,j);a.addColorStop(0,"#666"),a.addColorStop(1,"#000");for(var b=0;g>b;b++)for(var c=0;h>c;c++){var e=Math.floor(j/g),f=Math.floor(k/h);d.fillStyle="#aaa",d.fillRect(b*e,c*f,e,f),d.globalAlpha=.1,d.beginPath(),d.strokeStyle="#666",d.lineWidth=1,d.moveTo(b*e,c*f),d.lineTo(b*e+e,c*f),d.lineTo(b*e+e,c*f+f),d.lineTo(b*e,c*f+f),d.lineTo(b*e,c*f),d.stroke(),d.globalAlpha=1}},t=function(a,b){return 1===l[a*g+b]},u=function(a,b){return l[a*g+b]>=2},v=function(a,b){return l[a*g+b]},w=function(a,b,c){m[a*g+b]=c},x=function(a,b){return m[a*g+b]!==l[a*g+b]},y=function(a,b){var c=Math.floor(j/g),e=Math.floor(k/h);x(a,b)&&(d.fillStyle=1===m[a*g+b]?"#fff":m[a*g+b]>=2?"rgba(65,180,255,"+.75*m[a*g+b]/10+")":"#000",d.fillRect(a*c,b*e,c,e),l[a*g+b]=m[a*g+b])},z=function(a,b){var c=0;return t(a,b-1)&&c++,t(a,b+1)&&c++,t(a-1,b-1)&&c++,t(a-1,b)&&c++,t(a-1,b+1)&&c++,t(a+1,b-1)&&c++,t(a+1,b)&&c++,t(a+1,b+1)&&c++,0===a&&(t(g-1,b-1)&&c++,t(g-1,b)&&c++,t(g-1,b+1)&&c++),a===g-1&&(t(0,b-1)&&c++,t(0,b)&&c++,t(0,b+1)&&c++),b===h-1&&(t(a,0)&&c++,t(a-1,0)&&c++,t(a+1,0)&&c++),0===b&&(t(a,h-1)&&c++,t(a-1,h-1)&&c++,t(a+1,h-1)&&c++),c},A=function(a){for(var b=g/5,c=0,d=0,e=0;c<a.length;){var f=a.charAt(c++);"O"===f&&w(b+e,b+d,1),"x"===f&&(e=-1,d++),e++}},B=function(){if(i){var a=0,b=0;for(a=0;g>a;a++)for(b=0;h>b;b++){var c=z(a,b);t(a,b)?1>=c?w(a,b,2):c>=4&&w(a,b,2):3===c?w(a,b,1):u(a,b)&&(v(a,b)>=10?w(a,b,0):w(a,b,v(a,b)+1))}for(a=0;g>a;a++)for(b=0;h>b;b++)y(a,b)}window.requestAnimationFrame(B)},C=function(a){a.$el.addClass("active"),d.clearRect(0,0,j,k),l.length=0,m.length=0,s(),A(a.pattern),window.requestAnimationFrame(B)};return f.load=function(){n(),r(),p(),C(e.glidergun)},f}(jQuery,document);jQuery(VI_GOL.load);
+'use strict';
+var VI_GOL = (function($, doc){
+	var app = {},
+		N = 125, // number of cells horizontally
+		M = Math.floor(N*666/1000), // number of cells vertically
+		canvas,
+		context,
+		running = false,
+		width = 1000,
+		height = Math.floor(width*666/1000),
+		patterns,
+		grid = new Array(N*M), // the grid of cells
+		change = new Array(N*M); // the cell changes recorded
+
+	var _loadParams = function(){
+		// initialise canvas
+		canvas = document.getElementById('canvas-gol');
+		// save reference to context
+		context = canvas.getContext('2d');
+		// calculate width/height
+		width = Math.min(width, doc.body.clientWidth - 20);
+		height = Math.floor(width * 666/1000);
+		canvas.width = width;
+		canvas.height = height;
+		canvas.style.width = width + 'px';
+		canvas.style.height = height + 'px';
+		// initialise patterns
+		patterns = {
+			glidergun: "........................Ox......................O.Ox............OO......OO............OOx...........O...O....OO............OOxOO........O.....O...OOxOO........O...O.OO....O.Ox..........O.....O.......Ox...........O...Ox............OO",
+			ship: "...Ox.O...OxOxO....OxOOOOO",
+			glider: ".Ox..OxOOO",
+			noah: "..........O.Ox.........Ox..........O..Ox............OOOxxxxxx.OxO.OxxO..Ox..OOx...O",
+			space: "...........OO.....OOOOx.........OO.OO...O...Ox.........OOOO........Ox..........OO.....O..Oxx........Ox.......OO........OOx......O.........O..Ox.......OOOOO....O..Ox........OOOO...OO.OOx...........O....OOxxxx..................OOOOxO..O.............O...Ox....O................OxO...O............O..Ox.OOOO",
+			pentomino: ".OOxOOx.O"
+		};
+	};
+
+	var _initUI = function(){
+		var $select = $('<select class="form-control"></select>');
+		for(var key in patterns){
+			if(patterns.hasOwnProperty(key)){
+				$select.append($('<option value="'+patterns[key]+'">'+key+'</option>'));
+			}
+		}
+		$(canvas).before($select);
+	};
+
+	// takes a screenshot of the canvas and
+	var _saveScreenshot = function () {
+		window.location = canvas.toDataURL('image/png');
+	};
+
+	// run/pause the app
+	var _run = function(){
+		$(this).text(running ? 'Run' : 'Pause');
+		running = !running;
+	};
+	
+	var _addHandlers = function(){
+		$('#save').click(_saveScreenshot);
+		$('#run').click(_run);
+		for(var key in patterns){
+			if(patterns.hasOwnProperty(key)){
+				if(patterns[key].$el){
+					patterns[key].$el.click(_patternClick);
+				}
+			}
+		}
+	};
+	var _drawGrid = function(){
+		// paints along a cone between two circles. The first three parameters represent the start circle, with origin (x0, y0) and radius r0. The last three parameters represent the end circle, with origin (x1, y1) and radius r1.
+		var lingrad = context.createRadialGradient(width/2, width/2, 100, width/2, width/2, width);
+		lingrad.addColorStop(0, '#666');
+		lingrad.addColorStop(1, '#000');
+		for(var i=0; i < N; i++){
+			for(var j=0; j < M; j++){
+				var wunit = Math.floor(width/N);
+				var hunit = Math.floor(height/M);
+				context.fillStyle   = '#aaa';
+				context.fillRect(i*wunit, j*hunit, wunit, hunit);
+				context.globalAlpha = 0.1;
+				context.beginPath();
+				context.strokeStyle = '#666';
+				context.lineWidth = 1;
+				context.moveTo(i*wunit, j*hunit);
+				context.lineTo(i*wunit + wunit, j*hunit);
+				context.lineTo(i*wunit + wunit, j*hunit + hunit);
+				context.lineTo(i*wunit, j*hunit + hunit);
+				context.lineTo(i*wunit, j*hunit);
+				context.stroke();
+				context.globalAlpha = 1;
+			}
+		}
+	};
+	var _alive = function(i, j){
+		return grid[i*N+j] === 1;
+	};
+
+	var _dying = function(i, j){
+		return grid[i*N+j] >= 2;
+	};
+
+	var _getCell = function(i, j){
+		return grid[i*N+j];
+	};
+	
+	var _setCell = function(i, j, value){
+		change[i*N+j] = value;
+	};
+	
+	var _changed = function(i, j){
+		return change[i*N+j] !== grid[i*N+j];
+	};
+	
+	var _drawCell = function(i, j){
+		var wunit = Math.floor(width/N);
+		var hunit = Math.floor(height/M);
+		if(_changed(i,j)){
+			if(change[i*N+j] === 1){
+				context.fillStyle   = '#fff';
+			} else if(change[i*N+j] >= 2){
+				context.fillStyle   = 'rgba(65,180,255,'+(0.75*change[i*N+j]/10)+')';
+			} else{
+				context.fillStyle   = '#000';
+			}
+			context.fillRect(i*wunit, j*hunit, wunit, hunit);
+			grid[i*N + j] = change[i*N+j];
+		}
+	};
+
+	// return the number of alive neightbours
+	var _neightboursCount = function(i, j){
+		var counter = 0;
+		if(_alive(i,j-1)){
+			counter++;
+		}
+		if(_alive(i,j+1)){
+			counter++;
+		}
+		if(_alive(i-1,j-1)){
+			counter++;
+		}
+		if(_alive(i-1,j)){
+			counter++;
+		}
+		if(_alive(i-1,j+1)){
+			counter++;
+		}
+		if(_alive(i+1,j-1)){
+			counter++;
+		}
+		if(_alive(i+1,j)){
+			counter++;
+		}
+		if(_alive(i+1,j+1)){
+			counter++;
+		}
+		if(i === 0){
+			if(_alive(N-1,j-1)){
+				counter++;
+			}
+			if(_alive(N-1,j)){
+				counter++;
+			}
+			if(_alive(N-1,j+1)){
+				counter++;
+			}
+		}
+		if(i === N-1){
+			if(_alive(0,j-1)){
+				counter++;
+			}
+			if(_alive(0,j)){
+				counter++;
+			}
+			if(_alive(0,j+1)){
+				counter++;
+			}
+		}
+		if(j === M-1){
+			if(_alive(i,0)){
+				counter++;
+			}
+			if(_alive(i-1,0)){
+				counter++;
+			}
+			if(_alive(i+1,0)){
+				counter++;
+			}
+		}
+		if(j === 0){
+			if(_alive(i,M-1)){
+				counter++;
+			}
+			if(_alive(i-1,M-1)){
+				counter++;
+			}
+			if(_alive(i+1,M-1)){
+				counter++;
+			}
+		}
+		return counter;
+	};
+
+	var _loadGrid = function(pattern){
+		// init grid
+		var x = N/5,
+			index = 0,
+			row = 0,
+			column = 0;
+
+		while(index < pattern.length){
+			var c = pattern.charAt(index++);
+			if(c === 'O'){
+				_setCell(x+column, x+row, 1);
+			}
+			if(c === 'x'){
+				column = -1;
+				row++;
+			}
+			column++;
+		}
+	};
+
+	var _draw = function(){
+		if(running){
+			// If a cell has either 0 or exactly 1 neighbour, it will die on underpopulation.
+			// If a cell has exactly 4 or more neighbours, it will die on overpopulation
+			// If an empty space has exactly 3 cells, the empty space will be populated by a new cell.
+			var i = 0, j = 0;
+			for(i = 0; i< N; i++){
+				for(j = 0; j< M; j++){
+					var count = _neightboursCount(i, j);
+					if(_alive(i, j)){
+						if(count <= 1){
+							_setCell(i, j, 2);
+						} else if(count >= 4){
+							_setCell(i, j, 2);
+						}
+					}else{
+						if(count === 3){
+							_setCell(i, j, 1);
+						} else if(_dying(i,j)){
+							if(_getCell(i, j) >= 10){
+								_setCell(i, j, 0);
+							} else{
+								_setCell(i, j, _getCell(i, j)+1);
+							}
+						}
+					}
+				}
+			}
+			for(i = 0; i< N; i++){
+				for(j = 0; j< M; j++){
+					_drawCell(i, j);
+				}
+			}
+		}
+		window.requestAnimationFrame(_draw);
+	};
+	
+	// load a pattern into the canvas
+	var _init = function(pattern){
+		// clear the canvas
+		context.clearRect(0, 0, width, height);
+		// empty the grids
+		grid.length = 0;
+		change.length = 0;
+		_drawGrid();
+		_loadGrid(pattern);
+		window.requestAnimationFrame(_draw);
+	};
+	// initialise the app
+	app.load = function(){
+		_loadParams();
+		_initUI();
+		_addHandlers();
+		_run();
+		_init(patterns.glidergun);
+	};
+	return app;
+})(jQuery, document);
+jQuery(VI_GOL.load);
+/*CANVAS
+createLinearGradient(x0, y0, x1, y1) paints along a line from (x0, y0) to (x1, y1).
+createRadialGradient(x0, y0, r0, x1, y1, r1) paints along a cone between two circles. The first three parameters represent the start circle, with origin (x0, y0) and radius r0. The last three parameters represent the end circle, with origin (x1, y1) and radius r1.
+my_gradient.addColorStop(0, "black");
+ctx.rect(x, y, width, height)
+*/
