@@ -120,8 +120,8 @@ module.exports = function(grunt) {
 				dest: '<%= config.dist %>/inc'
 			},
 			sftp:{
-				src: '<%= yeoman.app %>/.sftp-config.json',
-				dest: '<%= yeoman.dist %>/sftp-config.json'
+				src: '<%= config.app %>/.sftp-config.json',
+				dest: '<%= config.dist %>/sftp-config.json'
 			}
 		},
 		modernizr: {

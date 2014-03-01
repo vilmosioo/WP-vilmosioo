@@ -7,8 +7,12 @@ Author: Vilmos Ioo
 Author URI: http://www.vilmosioo.co.uk 
 */
 
-@import '_normalize';
-@import '_mixins';
+@import 'normalize';
+@import 'mixins';
+@import "variables";
+@import 'forms';
+@import 'buttons';
+
 @import 'css/_common.scss';
 @import 'css/_layout.scss';
 @import 'css/_navigation.scss';

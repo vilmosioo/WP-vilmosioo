@@ -1,9 +1,11 @@
 'use strict';
+
 var VI_GOL = (function($, doc){
 	var app = {},
 		N = 125, // number of cells horizontally
 		M = Math.floor(N*666/1000), // number of cells vertically
 		canvas,
+		select, run, screenshot,
 		context,
 		running = false,
 		width = 1000,
@@ -24,67 +26,51 @@ var VI_GOL = (function($, doc){
 		canvas.height = height;
 		canvas.style.width = width + 'px';
 		canvas.style.height = height + 'px';
+
 		// initialise patterns
 		patterns = {
-			glidergun: {
-				$el: $('#glidergun'),
-				pattern: "........................Ox......................O.Ox............OO......OO............OOx...........O...O....OO............OOxOO........O.....O...OOxOO........O...O.OO....O.Ox..........O.....O.......Ox...........O...Ox............OO"
-			},
-			ship: {
-				$el: $('#ship'),
-				pattern: "...Ox.O...OxOxO....OxOOOOO"
-			},
-			glider: {
-				$el: $('#glider'),
-				pattern: ".Ox..OxOOO"
-			},
-			noah: {
-				$el: $('#noah'),
-				pattern: "..........O.Ox.........Ox..........O..Ox............OOOxxxxxx.OxO.OxxO..Ox..OOx...O"
-			},
-			space: {
-				$el: $('#space'),
-				pattern: "...........OO.....OOOOx.........OO.OO...O...Ox.........OOOO........Ox..........OO.....O..Oxx........Ox.......OO........OOx......O.........O..Ox.......OOOOO....O..Ox........OOOO...OO.OOx...........O....OOxxxx..................OOOOxO..O.............O...Ox....O................OxO...O............O..Ox.OOOO"
-			},
-			pentomino: {
-				$el: $('#pentomino'),
-				pattern: ".OOxOOx.O"
-			},
-			$all: $('#glider, #noah, #ship, #space, #glidergun, #pentomino')
+			Glidergun: "........................Ox......................O.Ox............OO......OO............OOx...........O...O....OO............OOxOO........O.....O...OOxOO........O...O.OO....O.Ox..........O.....O.......Ox...........O...Ox............OO",
+			Ship: "...Ox.O...OxOxO....OxOOOOO",
+			Glider: ".Ox..OxOOO",
+			Noah: "..........O.Ox.........Ox..........O..Ox............OOOxxxxxx.OxO.OxxO..Ox..OOx...O",
+			Space: "...........OO.....OOOOx.........OO.OO...O...Ox.........OOOO........Ox..........OO.....O..Oxx........Ox.......OO........OOx......O.........O..Ox.......OOOOO....O..Ox........OOOO...OO.OOx...........O....OOxxxx..................OOOOxO..O.............O...Ox....O................OxO...O............O..Ox.OOOO",
+			Pentomino: ".OOxOOx.O",
 		};
 	};
+
+	var _addButtons = function(){
+		select = $('<select class="form-control"></select>').width('300px');
+		for(var key in patterns){
+			if(patterns.hasOwnProperty(key)){
+				select.append($('<option value="'+patterns[key]+'">'+key+'</option>'));
+			}
+		}
+		run = $('<button class="active btn btn-primary">Pause</button>');
+		screenshot = $('<button class="btn btn-primary">Save image</button>');
+		$(canvas).before($('<p></p>').append(run).append('&nbsp;').append(screenshot));
+		$(canvas).before($('<p></p>').append(select));
+	};
+
 	// takes a screenshot of the canvas and
 	var _saveScreenshot = function () {
 		window.location = canvas.toDataURL('image/png');
 	};
+
 	// run/pause the app
 	var _run = function(){
-		$(this).text(running ? 'Run' : 'Pause');
+		run.text(running ? 'Run' : 'Pause');
+		run.toggleClass('active', !running);
 		running = !running;
 	};
-	var _patternClick = function(){
-		var $this = $(this);
-		// remove active class from all buttons
-		patterns.$all.removeClass('active');
-		// find associated pattern and load it
-		for(var key in patterns){
-			if(patterns.hasOwnProperty(key) && patterns[key].$el.is($this)){
-				_init(patterns[key]);
-				return;
-			}
-		}
-	};
+	
 	var _addHandlers = function(){
-		$('#save').click(_saveScreenshot);
-		$('#run').click(_run);
-		for(var key in patterns){
-			if(patterns.hasOwnProperty(key)){
-				if(patterns[key].$el){
-					patterns[key].$el.click(_patternClick);
-				}
-			}
-		}
+		screenshot.click(_saveScreenshot);
+		run.click(_run);
+		select.change(function(){
+			_init(select.val());
+		});
 	};
+	
 	var _drawGrid = function(){
 		// paints along a cone between two circles. The first three parameters represent the start circle, with origin (x0, y0) and radius r0. The last three parameters represent the end circle, with origin (x1, y1) and radius r1.
 		var lingrad = context.createRadialGradient(width/2, width/2, 100, width/2, width/2, width);
@@ -110,6 +96,7 @@ var VI_GOL = (function($, doc){
 			}
 		}
 	};
+
 	var _alive = function(i, j){
 		return grid[i*N+j] === 1;
 	};
@@ -279,30 +266,27 @@ var VI_GOL = (function($, doc){
 	
 	// load a pattern into the canvas
 	var _init = function(pattern){
-		// activate button
-		pattern.$el.addClass('active');
 		// clear the canvas
 		context.clearRect(0, 0, width, height);
 		// empty the grids
 		grid.length = 0;
 		change.length = 0;
+		
 		_drawGrid();
-		_loadGrid(pattern.pattern);
+		_loadGrid(pattern);
 		window.requestAnimationFrame(_draw);
 	};
+
 	// initialise the app
 	app.load = function(){
 		_loadParams();
+		_addButtons();
 		_addHandlers();
 		_run();
-		_init(patterns.glidergun);
+		_init(patterns.Glidergun);
 	};
+
 	return app;
 })(jQuery, document);
+
 jQuery(VI_GOL.load);
-/*CANVAS
-createLinearGradient(x0, y0, x1, y1) paints along a line from (x0, y0) to (x1, y1).
-createRadialGradient(x0, y0, r0, x1, y1, r1) paints along a cone between two circles. The first three parameters represent the start circle, with origin (x0, y0) and radius r0. The last three parameters represent the end circle, with origin (x1, y1) and radius r1.
-my_gradient.addColorStop(0, "black");
-ctx.rect(x, y, width, height)
-*/
