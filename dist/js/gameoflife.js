@@ -1,1 +1,306 @@
-/*! VilmosIoo - v1.3.12 */"use strict";var VI_GOL=function(a,b){var c,d,e,f,g,h,i={},j=125,k=Math.floor(666*j/1e3),l=!1,m=1e3,n=Math.floor(666*m/1e3),o=new Array(j*k),p=new Array(j*k),q=function(){c=document.getElementById("canvas-gol"),g=c.getContext("2d"),m=Math.min(m,b.body.clientWidth-20),n=Math.floor(666*m/1e3),c.width=m,c.height=n,c.style.width=m+"px",c.style.height=n+"px",h={Glidergun:"........................Ox......................O.Ox............OO......OO............OOx...........O...O....OO............OOxOO........O.....O...OOxOO........O...O.OO....O.Ox..........O.....O.......Ox...........O...Ox............OO",Ship:"...Ox.O...OxOxO....OxOOOOO",Glider:".Ox..OxOOO",Noah:"..........O.Ox.........Ox..........O..Ox............OOOxxxxxx.OxO.OxxO..Ox..OOx...O",Space:"...........OO.....OOOOx.........OO.OO...O...Ox.........OOOO........Ox..........OO.....O..Oxx........Ox.......OO........OOx......O.........O..Ox.......OOOOO....O..Ox........OOOO...OO.OOx...........O....OOxxxx..................OOOOxO..O.............O...Ox....O................OxO...O............O..Ox.OOOO",Pentomino:".OOxOOx.O"}},r=function(){d=a('<select class="form-control"></select>').width("300px");for(var b in h)h.hasOwnProperty(b)&&d.append(a('<option value="'+h[b]+'">'+b+"</option>"));e=a('<button class="active btn btn-primary">Pause</button>'),f=a('<button class="btn btn-primary">Save image</button>'),a(c).before(a("<p></p>").append(e).append("&nbsp;").append(f)),a(c).before(a("<p></p>").append(d))},s=function(){window.location=c.toDataURL("image/png")},t=function(){e.text(l?"Run":"Pause"),e.toggleClass("active",!l),l=!l},u=function(){f.click(s),e.click(t),d.change(function(){F(d.val())})},v=function(){var a=g.createRadialGradient(m/2,m/2,100,m/2,m/2,m);a.addColorStop(0,"#666"),a.addColorStop(1,"#000");for(var b=0;j>b;b++)for(var c=0;k>c;c++){var d=Math.floor(m/j),e=Math.floor(n/k);g.fillStyle="#aaa",g.fillRect(b*d,c*e,d,e),g.globalAlpha=.1,g.beginPath(),g.strokeStyle="#666",g.lineWidth=1,g.moveTo(b*d,c*e),g.lineTo(b*d+d,c*e),g.lineTo(b*d+d,c*e+e),g.lineTo(b*d,c*e+e),g.lineTo(b*d,c*e),g.stroke(),g.globalAlpha=1}},w=function(a,b){return 1===o[a*j+b]},x=function(a,b){return o[a*j+b]>=2},y=function(a,b){return o[a*j+b]},z=function(a,b,c){p[a*j+b]=c},A=function(a,b){return p[a*j+b]!==o[a*j+b]},B=function(a,b){var c=Math.floor(m/j),d=Math.floor(n/k);A(a,b)&&(g.fillStyle=1===p[a*j+b]?"#fff":p[a*j+b]>=2?"rgba(65,180,255,"+.75*p[a*j+b]/10+")":"#000",g.fillRect(a*c,b*d,c,d),o[a*j+b]=p[a*j+b])},C=function(a,b){var c=0;return w(a,b-1)&&c++,w(a,b+1)&&c++,w(a-1,b-1)&&c++,w(a-1,b)&&c++,w(a-1,b+1)&&c++,w(a+1,b-1)&&c++,w(a+1,b)&&c++,w(a+1,b+1)&&c++,0===a&&(w(j-1,b-1)&&c++,w(j-1,b)&&c++,w(j-1,b+1)&&c++),a===j-1&&(w(0,b-1)&&c++,w(0,b)&&c++,w(0,b+1)&&c++),b===k-1&&(w(a,0)&&c++,w(a-1,0)&&c++,w(a+1,0)&&c++),0===b&&(w(a,k-1)&&c++,w(a-1,k-1)&&c++,w(a+1,k-1)&&c++),c},D=function(a){for(var b=j/5,c=0,d=0,e=0;c<a.length;){var f=a.charAt(c++);"O"===f&&z(b+e,b+d,1),"x"===f&&(e=-1,d++),e++}},E=function(){if(l){var a=0,b=0;for(a=0;j>a;a++)for(b=0;k>b;b++){var c=C(a,b);w(a,b)?1>=c?z(a,b,2):c>=4&&z(a,b,2):3===c?z(a,b,1):x(a,b)&&(y(a,b)>=10?z(a,b,0):z(a,b,y(a,b)+1))}for(a=0;j>a;a++)for(b=0;k>b;b++)B(a,b)}window.requestAnimationFrame(E)},F=function(a){g.clearRect(0,0,m,n),o.length=0,p.length=0,v(),D(a),window.requestAnimationFrame(E)};return i.load=function(){q(),r(),u(),t(),F(h.Glidergun)},i}(jQuery,document);jQuery(VI_GOL.load);
+/*! VilmosIoo - v1.3.12 */!function(a,b){"use strict";var c="undefined"!=typeof Element&&"ALLOW_KEYBOARD_INPUT"in Element,d=function(){for(var a,c,d=[["requestFullscreen","exitFullscreen","fullscreenElement","fullscreenEnabled","fullscreenchange","fullscreenerror"],["webkitRequestFullscreen","webkitExitFullscreen","webkitFullscreenElement","webkitFullscreenEnabled","webkitfullscreenchange","webkitfullscreenerror"],["webkitRequestFullScreen","webkitCancelFullScreen","webkitCurrentFullScreenElement","webkitCancelFullScreen","webkitfullscreenchange","webkitfullscreenerror"],["mozRequestFullScreen","mozCancelFullScreen","mozFullScreenElement","mozFullScreenEnabled","mozfullscreenchange","mozfullscreenerror"],["msRequestFullscreen","msExitFullscreen","msFullscreenElement","msFullscreenEnabled","MSFullscreenChange","MSFullscreenError"]],e=0,f=d.length,g={};f>e;e++)if(a=d[e],a&&a[1]in b){for(e=0,c=a.length;c>e;e++)g[d[0][e]]=a[e];return g}return!1}(),e={request:function(a){var e=d.requestFullscreen;a=a||b.documentElement,/5\.1[\.\d]* Safari/.test(navigator.userAgent)?a[e]():a[e](c&&Element.ALLOW_KEYBOARD_INPUT)},exit:function(){b[d.exitFullscreen]()},toggle:function(a){this.isFullscreen?this.exit():this.request(a)},onchange:function(){},onerror:function(){},raw:d};return d?(Object.defineProperties(e,{isFullscreen:{get:function(){return!!b[d.fullscreenElement]}},element:{enumerable:!0,get:function(){return b[d.fullscreenElement]}},enabled:{enumerable:!0,get:function(){return!!b[d.fullscreenEnabled]}}}),b.addEventListener(d.fullscreenchange,function(a){e.onchange.call(e,a)}),b.addEventListener(d.fullscreenerror,function(a){e.onerror.call(e,a)}),void(a.screenfull=e)):void(a.screenfull=!1)}(window,document);
+
+'use strict';
+
+var VI_GOL = (function($, screenfull, doc){
+	var app = {},
+		N = 125, // number of cells horizontally
+		M = Math.floor(N*666/1000), // number of cells vertically
+		canvas,
+		select, run, screenshot, fullscreen,
+		context,
+		running = false,
+		width = 1000,
+		height = Math.floor(width*666/1000),
+		patterns,
+		grid = new Array(N*M), // the grid of cells
+		change = new Array(N*M); // the cell changes recorded
+
+	var _loadParams = function(){
+		// initialise canvas
+		canvas = document.getElementById('canvas-gol');
+		// save reference to context
+		context = canvas.getContext('2d');
+		// calculate width/height
+		width = Math.min(width, doc.body.clientWidth - 20);
+		height = Math.floor(width * 666/1000);
+		canvas.width = width;
+		canvas.height = height;
+		canvas.style.width = width + 'px';
+		canvas.style.height = height + 'px';
+
+		// initialise patterns
+		patterns = {
+			Glidergun: "........................Ox......................O.Ox............OO......OO............OOx...........O...O....OO............OOxOO........O.....O...OOxOO........O...O.OO....O.Ox..........O.....O.......Ox...........O...Ox............OO",
+			Ship: "...Ox.O...OxOxO....OxOOOOO",
+			Glider: ".Ox..OxOOO",
+			Noah: "..........O.Ox.........Ox..........O..Ox............OOOxxxxxx.OxO.OxxO..Ox..OOx...O",
+			Space: "...........OO.....OOOOx.........OO.OO...O...Ox.........OOOO........Ox..........OO.....O..Oxx........Ox.......OO........OOx......O.........O..Ox.......OOOOO....O..Ox........OOOO...OO.OOx...........O....OOxxxx..................OOOOxO..O.............O...Ox....O................OxO...O............O..Ox.OOOO",
+			Pentomino: ".OOxOOx.O",
+		};
+	};
+
+	var _addButtons = function(){
+		select = $('<select class="form-control"></select>').width('300px');
+		for(var key in patterns){
+			if(patterns.hasOwnProperty(key)){
+				select.append($('<option value="'+patterns[key]+'">'+key+'</option>'));
+			}
+		}
+		run = $('<button class="active btn btn-primary">Pause</button>');
+		screenshot = $('<button class="btn btn-primary">Save image</button>');
+		fullscreen = $('<button class="btn btn-primary">Full screen</button>');
+
+		var temp = $('<p></p>').append(run).append('&nbsp;').append(screenshot);
+		if (screenfull.enabled) {
+			temp.append('&nbsp;').append(fullscreen);
+		}
+
+		$(canvas).before(temp);
+		$(canvas).before($('<p></p>').append(select));
+	};
+
+	// takes a screenshot of the canvas and
+	var _saveScreenshot = function () {
+		window.location = canvas.toDataURL('image/png');
+	};
+
+	// run/pause the app
+	var _run = function(){
+		run.text(running ? 'Run' : 'Pause');
+		run.toggleClass('active', !running);
+		running = !running;
+	};
+	
+	var _addHandlers = function(){
+		screenshot.click(_saveScreenshot);
+		run.click(_run);
+		if (screenfull.enabled) {
+			fullscreen.click(function(){
+				screenfull.request(canvas);
+			});
+		}
+		select.change(function(){
+			_init(select.val());
+		});
+	};
+	
+	var _drawGrid = function(){
+		// paints along a cone between two circles. The first three parameters represent the start circle, with origin (x0, y0) and radius r0. The last three parameters represent the end circle, with origin (x1, y1) and radius r1.
+		var lingrad = context.createRadialGradient(width/2, width/2, 100, width/2, width/2, width);
+		lingrad.addColorStop(0, '#666');
+		lingrad.addColorStop(1, '#000');
+		for(var i=0; i < N; i++){
+			for(var j=0; j < M; j++){
+				var wunit = Math.floor(width/N);
+				var hunit = Math.floor(height/M);
+				context.fillStyle   = '#aaa';
+				context.fillRect(i*wunit, j*hunit, wunit, hunit);
+				context.globalAlpha = 0.1;
+				context.beginPath();
+				context.strokeStyle = '#666';
+				context.lineWidth = 1;
+				context.moveTo(i*wunit, j*hunit);
+				context.lineTo(i*wunit + wunit, j*hunit);
+				context.lineTo(i*wunit + wunit, j*hunit + hunit);
+				context.lineTo(i*wunit, j*hunit + hunit);
+				context.lineTo(i*wunit, j*hunit);
+				context.stroke();
+				context.globalAlpha = 1;
+			}
+		}
+	};
+
+	var _alive = function(i, j){
+		return grid[i*N+j] === 1;
+	};
+
+	var _dying = function(i, j){
+		return grid[i*N+j] >= 2;
+	};
+
+	var _getCell = function(i, j){
+		return grid[i*N+j];
+	};
+	
+	var _setCell = function(i, j, value){
+		change[i*N+j] = value;
+	};
+	
+	var _changed = function(i, j){
+		return change[i*N+j] !== grid[i*N+j];
+	};
+	
+	var _drawCell = function(i, j){
+		var wunit = Math.floor(width/N);
+		var hunit = Math.floor(height/M);
+		if(_changed(i,j)){
+			if(change[i*N+j] === 1){
+				context.fillStyle   = '#fff';
+			} else if(change[i*N+j] >= 2){
+				context.fillStyle   = 'rgba(65,180,255,'+(0.75*change[i*N+j]/10)+')';
+			} else{
+				context.fillStyle   = '#000';
+			}
+			context.fillRect(i*wunit, j*hunit, wunit, hunit);
+			grid[i*N + j] = change[i*N+j];
+		}
+	};
+
+	// return the number of alive neightbours
+	var _neightboursCount = function(i, j){
+		var counter = 0;
+		if(_alive(i,j-1)){
+			counter++;
+		}
+		if(_alive(i,j+1)){
+			counter++;
+		}
+		if(_alive(i-1,j-1)){
+			counter++;
+		}
+		if(_alive(i-1,j)){
+			counter++;
+		}
+		if(_alive(i-1,j+1)){
+			counter++;
+		}
+		if(_alive(i+1,j-1)){
+			counter++;
+		}
+		if(_alive(i+1,j)){
+			counter++;
+		}
+		if(_alive(i+1,j+1)){
+			counter++;
+		}
+		if(i === 0){
+			if(_alive(N-1,j-1)){
+				counter++;
+			}
+			if(_alive(N-1,j)){
+				counter++;
+			}
+			if(_alive(N-1,j+1)){
+				counter++;
+			}
+		}
+		if(i === N-1){
+			if(_alive(0,j-1)){
+				counter++;
+			}
+			if(_alive(0,j)){
+				counter++;
+			}
+			if(_alive(0,j+1)){
+				counter++;
+			}
+		}
+		if(j === M-1){
+			if(_alive(i,0)){
+				counter++;
+			}
+			if(_alive(i-1,0)){
+				counter++;
+			}
+			if(_alive(i+1,0)){
+				counter++;
+			}
+		}
+		if(j === 0){
+			if(_alive(i,M-1)){
+				counter++;
+			}
+			if(_alive(i-1,M-1)){
+				counter++;
+			}
+			if(_alive(i+1,M-1)){
+				counter++;
+			}
+		}
+		return counter;
+	};
+
+	var _loadGrid = function(pattern){
+		// init grid
+		var x = N/5,
+			index = 0,
+			row = 0,
+			column = 0;
+
+		while(index < pattern.length){
+			var c = pattern.charAt(index++);
+			if(c === 'O'){
+				_setCell(x+column, x+row, 1);
+			}
+			if(c === 'x'){
+				column = -1;
+				row++;
+			}
+			column++;
+		}
+	};
+
+	var _draw = function(){
+		if(running){
+			// If a cell has either 0 or exactly 1 neighbour, it will die on underpopulation.
+			// If a cell has exactly 4 or more neighbours, it will die on overpopulation
+			// If an empty space has exactly 3 cells, the empty space will be populated by a new cell.
+			var i = 0, j = 0;
+			for(i = 0; i< N; i++){
+				for(j = 0; j< M; j++){
+					var count = _neightboursCount(i, j);
+					if(_alive(i, j)){
+						if(count <= 1){
+							_setCell(i, j, 2);
+						} else if(count >= 4){
+							_setCell(i, j, 2);
+						}
+					}else{
+						if(count === 3){
+							_setCell(i, j, 1);
+						} else if(_dying(i,j)){
+							if(_getCell(i, j) >= 10){
+								_setCell(i, j, 0);
+							} else{
+								_setCell(i, j, _getCell(i, j)+1);
+							}
+						}
+					}
+				}
+			}
+			for(i = 0; i< N; i++){
+				for(j = 0; j< M; j++){
+					_drawCell(i, j);
+				}
+			}
+		}
+		window.requestAnimationFrame(_draw);
+	};
+	
+	// load a pattern into the canvas
+	var _init = function(pattern){
+		// clear the canvas
+		context.clearRect(0, 0, width, height);
+		// empty the grids
+		grid.length = 0;
+		change.length = 0;
+		
+		_drawGrid();
+		_loadGrid(pattern);
+		window.requestAnimationFrame(_draw);
+	};
+
+	// initialise the app
+	app.load = function(){
+		_loadParams();
+		_addButtons();
+		_addHandlers();
+		_run();
+		_init(patterns.Glidergun);
+	};
+
+	return app;
+})(jQuery, screenfull, document);
+
+jQuery(VI_GOL.load);

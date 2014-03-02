@@ -1,11 +1,13 @@
 'use strict';
 
-var VI_GOL = (function($, doc){
+var screenfull = {};
+
+var VI_GOL = (function($, screenfull, doc){
 	var app = {},
 		N = 125, // number of cells horizontally
 		M = Math.floor(N*666/1000), // number of cells vertically
 		canvas,
-		select, run, screenshot,
+		select, run, screenshot, fullscreen,
 		context,
 		running = false,
 		width = 1000,
@@ -47,7 +49,14 @@ var VI_GOL = (function($, doc){
 		}
 		run = $('<button class="active btn btn-primary">Pause</button>');
 		screenshot = $('<button class="btn btn-primary">Save image</button>');
-		$(canvas).before($('<p></p>').append(run).append('&nbsp;').append(screenshot));
+		fullscreen = $('<button class="btn btn-primary">Full screen</button>');
+
+		var temp = $('<p></p>').append(run).append('&nbsp;').append(screenshot);
+		if (screenfull.enabled) {
+			temp.append(fullscreen);
+		}
+
+		$(canvas).before(temp);
 		$(canvas).before($('<p></p>').append(select));
 	};
 
@@ -66,6 +75,11 @@ var VI_GOL = (function($, doc){
 	var _addHandlers = function(){
 		screenshot.click(_saveScreenshot);
 		run.click(_run);
+		if (screenfull.enabled) {
+			fullscreen.click(function(){
+				screenfull.request();
+			});
+		}
 		select.change(function(){
 			_init(select.val());
 		});
@@ -287,6 +301,6 @@ var VI_GOL = (function($, doc){
 	};
 
 	return app;
-})(jQuery, document);
+})(jQuery, screenfull, document);
 
 jQuery(VI_GOL.load);
