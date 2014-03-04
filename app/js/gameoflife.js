@@ -1,6 +1,5 @@
 'use strict';
-
-var screenfull = {};
+/* globals screenfull */
 
 var VI_GOL = (function($, screenfull, doc){
 	var app = {},
@@ -53,7 +52,7 @@ var VI_GOL = (function($, screenfull, doc){
 
 		var temp = $('<p></p>').append(run).append('&nbsp;').append(screenshot);
 		if (screenfull.enabled) {
-			temp.append(fullscreen);
+			temp.append('&nbsp;').append(fullscreen);
 		}
 
 		$(canvas).before(temp);
