@@ -70,10 +70,6 @@ module.exports = function(grunt) {
 			dist: {
 				files: {
 					'<%= config.dist %>/js/play.js': '<%= config.app %>/js/play.js',
-					'<%= config.dist %>/js/gameoflife.js': [
-						'components/screenfull/dist/screenfull.js',
-						'<%= config.app %>/js/gameoflife.js'
-					],
 					'<%= config.dist %>/js/webgl.js': [
 						'components/threejs/build/three.min.js',
 						'components/threejs/examples/js/controls/TrackballControls.js',

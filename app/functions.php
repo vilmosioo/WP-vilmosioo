@@ -46,14 +46,12 @@ class VilmosIoo extends Hyperion{
 		wp_register_script( 'default', THEME_PATH.'/js/script.js', array('jquery'), '@@version', true ); 
 		wp_register_script( 'webgl', THEME_PATH.'/js/webgl.js', array('default'), '@@version', true);
 		wp_register_script( 'play', THEME_PATH.'/js/play.js', array('default'), '@@version', true);
-		wp_register_script( 'gameoflife', THEME_PATH.'/js/gameoflife.js', array('default'), '@@version', true);
 
 		// enqueue scripts and styles
 		wp_enqueue_script( 'default' );
 		
 		if(is_singular('project')){
 			if(get_the_title() == 'WebGL Demo' ) wp_enqueue_script( 'webgl' );
-			if(get_the_title() == 'Game Of Life' ) wp_enqueue_script( 'gameoflife' );
 		}
 	}
 
