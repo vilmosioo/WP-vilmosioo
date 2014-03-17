@@ -1,6 +1,7 @@
 #!/bin/sh
 
-echo 'Setting identity for git'
+echo 'Switching to master and setting identity for git'
+git checkout master
 git config user.email 'ioo.vilmos@gmail.com' || { echo 'Git auth failed' ; exit 1; }
 git config user.name 'Vilmos Ioo'
 
