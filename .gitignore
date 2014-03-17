@@ -3,7 +3,6 @@ bower_components/
 /components/
 component.json
 .sass-cache/
-dist/
 
 #################
 ## Eclipse
