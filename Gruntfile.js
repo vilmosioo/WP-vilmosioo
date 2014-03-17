@@ -152,7 +152,7 @@ module.exports = function(grunt) {
 					authKey: 'user'
 				},
 				src: 'dist',
-				dest: '/public_html/vi-content/themes/vilmosioo-dev/',
+				dest: '/',
 				exclusions: []
 			}
 		}
