@@ -14,9 +14,14 @@
     "app": "app",
     "dist": "dist"
   },
+  "scripts": {
+    "build": "sh config/build.sh",
+    "deploy": "sh config/deploy.sh"
+  },
   "author": "Vilmos Ioo",
   "license": "MIT",
   "readmeFilename": "README.md",
+  "private": true,
   "devDependencies": {
     "grunt": "~0.4.1",
     "matchdep": "~0.1.2",
@@ -29,6 +34,7 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-modernizr": "~0.3.0",
     "grunt-newer": "~0.6.0",
-    "grunt-replace": "~0.5.1"
+    "grunt-replace": "~0.5.1",
+    "grunt-ftp-deploy": "~0.1.2"
   }
 }

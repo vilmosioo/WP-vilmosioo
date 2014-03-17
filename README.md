@@ -1,8 +1,8 @@
 # About this theme
 
-The **Vilmos Ioo** theme is the current WordPress theme being displayed on vilmosioo.co.uk. It is used to showcase my portfolio online and it is sometimes used as a developer's environment (things may break sometimes). It is based on the Hyperion theme. 
+![Status](https://www.codeship.io/projects/015dd710-8fe1-0131-df30-0e12664fd090/status)
 
-It has been open-sourced because it's purpose is to showcase my development skills. 
+The **Vilmos Ioo** theme is the current WordPress theme being displayed on vilmosioo.co.uk. It is used to showcase my portfolio online and it is sometimes used as a developer's environment (things may break sometimes). It is based on the Hyperion theme. 
 
 ## Comments welcome
 

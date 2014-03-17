@@ -143,6 +143,18 @@ module.exports = function(grunt) {
 				src: '**/*',
 				dest: '<%= config.dist %>'
 			}
+		},
+		'ftp-deploy': {
+			build: {
+				auth: {
+					host: 'vilmosioo.co.uk',
+					port: 21,
+					authKey: 'user'
+				},
+				src: 'dist',
+				dest: '/public_html/vi-content/themes/vilmosioo-dev/',
+				exclusions: []
+			}
 		}
 	});
 
