@@ -9,7 +9,6 @@
     "modernizr": "~2.6.2",
     "bootstrap-sass": "~3.0.0",
     "font-awesome": "~3.2.1",
-    "threejs": "r61",
-    "screenfull": "~1.1.1"
+    "threejs": "r61"
   }
 }
