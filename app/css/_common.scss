@@ -96,3 +96,17 @@ input[type='submit']:hover, nav a:hover:hover, .blue:hover, .comment-reply-link:
 
 #actionbuttons{ text-align:center; margin:0 0 40px;}
 #actionbuttons .button{ width:250px; margin:0 10px 10px;}
+
+/*=====ICONS=====================*/
+.icon{ 
+  display:inline-block; padding:0 0 0 60px; height:60px; font-weight:bold; line-height:50px; 
+  &.facebook{ background:url('images/icons/facebook.png') no-repeat; }
+  &.twitter{ background:url('images/icons/twitter.png') no-repeat; }
+  &.linkedin{ background:url('images/icons/linkedin.png') no-repeat; }
+  &.rss{ background:url('images/icons/rss.png') no-repeat; }
+  &.youtube{ background:url('images/icons/youtube.png') no-repeat; }
+  &.wordpress{ background:url('images/icons/wordpress.png') no-repeat; }
+  &.github{ background:url('images/icons/github.png') no-repeat; }
+  &.pinterest{ background:url('images/icons/pinterest.png') no-repeat; }
+  &.goodreads{ background:url('images/icons/goodreads.png') no-repeat; }
+}
