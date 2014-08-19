@@ -141,11 +141,21 @@ module.exports = function(grunt) {
 			}
 		},
 		'ftp-deploy': {
-			build: {
+			prod: {
 				auth: {
 					host: 'ftp.vilmosioo.co.uk',
 					port: 21,
-					authKey: 'user'
+					authKey: 'prod'
+				},
+				src: 'dist',
+				dest: '/',
+				exclusions: []
+			},
+			dev: {
+				auth: {
+					host: 'ftp.vilmosioo.co.uk',
+					port: 21,
+					authKey: 'dev'
 				},
 				src: 'dist',
 				dest: '/',

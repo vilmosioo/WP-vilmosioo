@@ -1,6 +1,10 @@
 {
-  "user": {
+  "dev": {
     "username": "ci-user-2@vilmosioo.co.uk",
     "password": "d~WUXqCaC}+N"
+  },
+  "prod": {
+  	"username": "ci-user-prod",
+  	"password": "~5VsCTMDvd#W"
   }
 }

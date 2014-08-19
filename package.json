@@ -16,7 +16,8 @@
   },
   "scripts": {
     "build": "sh config/build.sh",
-    "deploy": "sh config/deploy.sh"
+    "dev": "sh config/dev.sh",
+    "prod": "sh config/prod.sh"
   },
   "author": "Vilmos Ioo",
   "license": "MIT",
