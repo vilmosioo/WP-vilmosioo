@@ -114,10 +114,6 @@ module.exports = function(grunt) {
 					'**/*'
 				],
 				dest: '<%= config.dist %>/inc'
-			},
-			sftp:{
-				src: '<%= config.app %>/.sftp-config.json',
-				dest: '<%= config.dist %>/sftp-config.json'
 			}
 		},
 		modernizr: {
