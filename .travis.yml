@@ -1,7 +1,7 @@
 language: node_js
 nodejs:
 before_script:
-- npm install -g bower
+- npm install -g bower grunt-cli
 - bower install
 script:
 - npm run build
