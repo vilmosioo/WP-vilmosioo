@@ -114,10 +114,6 @@ module.exports = function(grunt) {
 					'**/*'
 				],
 				dest: '<%= config.dist %>/inc'
-			},
-			sftp:{
-				src: '<%= config.app %>/.sftp-config.json',
-				dest: '<%= config.dist %>/sftp-config.json'
 			}
 		},
 		modernizr: {
@@ -140,26 +136,19 @@ module.exports = function(grunt) {
 				dest: '<%= config.dist %>'
 			}
 		},
-		'ftp-deploy': {
-			prod: {
-				auth: {
-					host: 'ftp.vilmosioo.co.uk',
-					port: 21,
-					authKey: 'prod'
+		compress: {
+			main: {
+				options: {
+					archive: 'wp-vilmosioo.zip'
 				},
-				src: 'dist',
-				dest: '/',
-				exclusions: []
-			},
-			dev: {
-				auth: {
-					host: 'ftp.vilmosioo.co.uk',
-					port: 21,
-					authKey: 'dev'
-				},
-				src: 'dist',
-				dest: '/',
-				exclusions: []
+				files: [
+					{
+						expand: true,
+						cwd: 'dist/',
+						src: ['**/*'],
+						dest: '.'
+					}
+				]
 			}
 		}
 	});
@@ -172,7 +161,8 @@ module.exports = function(grunt) {
 		'modernizr', // parse mdoernizr and copy only necessary tests
 		'uglify', // uglify all JS files from app folder and move them to in the dist folder
 		'copy', // copy rest of files from app folder to dist (php ,html, txt, ico, fonts) and copy components in dist
-		'replace' // replaces and inserts the theme version
+		'replace', // replaces and inserts the theme version
+		'compress' // package everything
 	]);
 
 	grunt.registerTask('server', [

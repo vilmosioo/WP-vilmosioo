@@ -4,6 +4,7 @@ bower_components/
 component.json
 .sass-cache/
 dist/
+.idea/
 
 #################
 ## Eclipse
