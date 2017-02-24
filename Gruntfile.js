@@ -135,28 +135,6 @@ module.exports = function(grunt) {
 				src: '**/*',
 				dest: '<%= config.dist %>'
 			}
-		},
-		'ftp-deploy': {
-			prod: {
-				auth: {
-					host: 'ftp.vilmosioo.co.uk',
-					port: 21,
-					authKey: 'prod'
-				},
-				src: 'dist',
-				dest: '/',
-				exclusions: []
-			},
-			dev: {
-				auth: {
-					host: 'ftp.vilmosioo.co.uk',
-					port: 21,
-					authKey: 'dev'
-				},
-				src: 'dist',
-				dest: '/',
-				exclusions: []
-			}
 		}
 	});
 
