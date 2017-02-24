@@ -117,11 +117,19 @@ module.exports = function(grunt) {
 			}
 		},
 		modernizr: {
-			devFile: "components/modernizr/modernizr.js",
-			outputFile: ".tmp/js/modernizr.js",
-			files: [
-				'app/**/*'
-			]
+			dist: {
+				"parseFiles": true,
+				"customTests": [],
+				devFile: "components/modernizr/modernizr.js",
+				dest: ".tmp/js/modernizr.js",
+				"tests": [
+					// Tests
+				],
+				"options": [
+					"setClasses"
+				],
+				"uglify": false
+			}
 		},
 		replace: {
 			options: {
