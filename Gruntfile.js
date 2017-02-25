@@ -150,7 +150,7 @@ module.exports = function(grunt) {
 		compress: {
 			main: {
 				options: {
-					archive: 'wp-vilmosioo-'+(process.env.TRAVIS_TAG || '')+'.zip'
+					archive: 'wp-vilmosioo-'+(process.env.TRAVIS_TAG || '').substring(1)+'.zip'
 				},
 				files: [
 					{
