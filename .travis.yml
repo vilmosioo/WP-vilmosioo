@@ -13,7 +13,7 @@ deploy:
   provider: releases
   api_key:
     secure: G6Azq0xsJQlIixWNNuDQt2Nhs4t7WFmX7aeMVCOS5ttaNXnIag3juOmqAUPnndlrRlZl5kl6sgbuseLbyQD6eVq81XMJHK2vTLX/6+vvZZyTO/hoYCmTmAjrChIN7GFs+wwVhUruMRdmyno173gFOJPNFPRcsIOMlv1w8IlgolKmevxDAwTWr7XGtOvxXVU9WMKbrfWIU4qd29vJkH1BNqEieKVUuG7fCmhadUnnX6sIY0jhho+q7vrGBnHoZxy2G4nS/I+7uP/NY/QFbI/sLPuWJ3B+g44NyHPJqiPQDfJTY4sl2i1n46lcqwLbZfp3bDmW5+fra0PiFQMUqAtS7bYJgSLBRjuK0ytnnY2tyQdE+yQSGbbwMZDrVAaHcazV9ur+5TZV1WZ2nackjGStesUhQ2VLoQ2lJSBfefWTDnnnc5XoYyy9PHjZkNUXOlrh+D5y9q0MlnIRxZufDqrTnRYKrs4zHwoNiTodjGEvIy9LR3+fyBnvuYpbTw23OwDmRwDJCTpnh1/9mL4GZGwNMkcMvh63M9AeFQBMBU5JnnXXZwFpuf031eNMO/hGgnN1sz8zXh1bMwymhEE+xxmmTCyqlLQuZF3qitkTsqIDfgcUoo9pnpICv8mpPnSp/P1nEmGC4CVWY7PeFVSVY9d9RA3driPDlgE+ci7N9cvplKI=
-  file: "wp-vilmosioo-${TRAVIS_TAG:1:-1}.zip"
+  file: "wp-vilmosioo-${TRAVIS_TAG:1}.zip"
   skip_cleanup: true
   on:
     tags: true
