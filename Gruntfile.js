@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 				options: {
 					sassDir: '<%= config.app %>',
 					cssDir: '.tmp',
-					importPath: 'components/bootstrap-sass/lib'
+					importPath: './components/bootstrap-sass/vendor/assets/stylesheets/bootstrap'
 				}
 			}
 		},
