@@ -83,6 +83,7 @@
         "jQuery": false,
         "$": false,
         "Modernizr": false,
-        "THREE": false
+        "THREE": false,
+        "process": false
     }        // additional predefined global variables
 }
