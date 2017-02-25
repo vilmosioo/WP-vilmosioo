@@ -1,6 +1,9 @@
 language: node_js
 nodejs:
 - 6.8.1
+branches:
+  only:
+    - master
 before_script:
 - gem install sass --version 3.2.13
 - gem install compass
@@ -15,5 +18,6 @@ deploy:
   file: wp-vilmosioo.zip
   skip_cleanup: true
   on:
+    repo: vilmosioo/WP-vilmosioo
     tags: true
     all_branches: true
